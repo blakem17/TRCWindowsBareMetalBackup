@@ -206,12 +206,11 @@ namespace WindowsFormsApplication2
                         if (tbName.Contains(d))
                         {
                             string txtboxInput = c.Text;
-                            textBox.AppendText(Environment.NewLine + txtboxInput);
                             foreach (string t in setArr)
                             {
                                 if (t.Contains(d))
                                 {
-                                    string toadd = t + txtboxInput;
+                                    string toadd = t + " \"" + txtboxInput + "\"";
                                     textBox.AppendText(Environment.NewLine + toadd);
                                 }
                             }
