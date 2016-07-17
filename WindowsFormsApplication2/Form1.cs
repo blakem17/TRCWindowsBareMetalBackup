@@ -24,8 +24,8 @@ namespace WindowsFormsApplication2
         private string credIdent = "$credential =";
         private string dirIdent = "$directory =";
         private string lgFlIdent = "$logFile =";
+        private string locationIdent = "$location =";
         private string[] setArr = new string[8];
-        private string[] updateArr = new string[7] { "company", "cred", "directory", "emailTo", "emailF", "log", "smtp"};
 
 
         public Form1()
@@ -40,11 +40,15 @@ namespace WindowsFormsApplication2
             setArr[5] = lgFlIdent;
             setArr[6] = pthTpIdent;
             setArr[7] = smtpIdent;
-        }
 
+        }
+        private void seldirectoryBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
         private void startButton_Click(object sender, EventArgs e)
         {
-            textBox.Text = filelocation;
+            selDirectoBox.Text = filelocation;
             if  (selDirectoBox.Text.Equals(noSelStr))
             {
                 textBox.Text = noSelStr;
@@ -56,50 +60,108 @@ namespace WindowsFormsApplication2
             }
             if (File.Exists(filelocation))
             {
-                textBox.Text = "";
-                string[] fileTextArr = File.ReadAllLines(filelocation);
-                string fileText = ConvertStringArrayToString(fileTextArr);
-                foreach (string t in setArr)
+                string[] fileTextArr1 = File.ReadAllLines(filelocation);
+                string joinded = String.Join(Environment.NewLine, fileTextArr1);
+                textBox.Text = joinded;
+                foreach(string s in fileTextArr1)
                 {
-                    foreach (string s in fileTextArr)
+                    if (s.Contains(compIdent))
                     {
-                        if (s.Contains(t))
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
                         {
-                            string scont = s;
-                            if (s.Contains(" = \""))
-                            {
-                                    textBox.AppendText(Environment.NewLine + s);
-                                foreach (string upstring in updateArr)
-                                {
-                                    if (s.Contains(upstring))
-                                    {
-                                        foreach (Control c in this.Controls)
-                                        {
-                                            string cname = c.Name;
-                                            if (c is TextBox)
-                                            {
-                                                if (cname.Contains(upstring))
-                                                {
-                                                    var reg = new Regex("\".*?\"");
-                                                    var matches = reg.Matches(s);
-                                                    foreach (var item in matches)
-                                                    {
 
-                                                        string u = item.ToString().Replace("\"", "");
-                                                        c.Text = u;
+                            string u = item.ToString().Replace("\"", "");
+                            companyTB.Text = u;
 
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        }
+                    }
+                    if (s.Contains(emToIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            emailToTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(emFrIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            emailFTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(smtpIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            smtpTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(pthTpIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            pathTYCB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(credIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            credTB.Text = u;
+                        }
+                    }
+                    if (s.Contains(dirIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            directoryTB.Text = u;
+
+                        };
+                    }
+                    if (s.Contains(lgFlIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            logTB.Text = u;
+
                         }
                     }
 
                 }
-                
 
             }
             else
@@ -146,35 +208,126 @@ namespace WindowsFormsApplication2
 
         private void saveButtton_Click(object sender, EventArgs e)
         {
-            foreach (Control c in this.Controls)
-            {
-                if (c is TextBox)
+            selDirectoBox.Text = filelocation;
+            string uCompany = companyTB.Text;
+            string uCred = companyTB.Text;
+            string uDirectory = directoryTB.Text;
+            string uEmailTo = emailToTB.Text;
+            string uEmailFr = emailFTB.Text;
+            string uLog = logTB.Text;
+            string uSmtp = smtpTB.Text;
+            int companyUpdate = 0;
+            int credupdate = 0;
+            int directoryupdate = 0;
+            int emailtoupdate = 0;
+            int emailfrupdate = 0;
+            int logupdate = 0;
+            int smtpupdate = 0;
+                if (companyUpdate == 0)
                 {
-                    foreach (string d in updateArr)
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(compIdent))
                     {
-                        string tbName = c.Name;
-                        if (tbName.Contains(d))
-                        {
-                            string txtboxInput = c.Text;
-                            foreach (string t in setArr)
-                            {
-                                if (t.Contains(d))
-                                {
-                                    string toadd = t + " \"" + txtboxInput + "\"";
-                                    textBox.AppendText(Environment.NewLine + toadd);
-                                }
-                            }
-                        }
+                        textBox.Text = textBox.Text.Replace(line, compIdent +"\"" +uCompany + "\"");
                     }
-
+                    companyUpdate ++;
                 }
             }
+                if (credupdate == 0)
+                {
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(credIdent))
+                    {
+                        textBox.Text = textBox.Text.Replace(line, credIdent + "\"" + uCred + "\"");
+                    }
+                    credupdate++;
+                }
+
+            }
+                if (directoryupdate == 0)
+                {
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(dirIdent))
+                    {
+                        textBox.Text = textBox.Text.Replace(line, dirIdent + "\"" + uDirectory+ "\"");
+                    }
+                    directoryupdate++;
+                }
+            }
+                if (emailtoupdate == 0)
+                {
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(emToIdent))
+                    {
+                        textBox.Text = textBox.Text.Replace(line, emToIdent + "\"" + uEmailTo + "\"");
+                    }
+                    emailtoupdate++;
+                }
+            }
+                if (emailfrupdate == 0)
+                {
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(emFrIdent))
+                    {
+                        textBox.Text = textBox.Text.Replace(line, emFrIdent + "\"" + uEmailFr + "\"");
+                    }
+                    emailfrupdate++;
+                }
+
+            }
+                if (logupdate == 0)
+                {
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(lgFlIdent))
+                    {
+                        textBox.Text = textBox.Text.Replace(line, lgFlIdent + "\"" + uLog + "\"");
+                    }
+                    logupdate++;
+                }
+            }
+                if (smtpupdate == 0)
+                {
+                foreach (var line in textBox.Lines)
+                {
+                    if (line.Contains(smtpIdent))
+                    {
+                        textBox.Text = textBox.Text.Replace(line, smtpIdent + "\"" + uSmtp + "\"");
+                    }
+                    smtpupdate++;
+                }
+            }
+            File.WriteAllText(filelocation, textBox.Text);
 
         }
 
-        private void seldirectoryBox_TextChanged(object sender, EventArgs e)
+        public void getUserSettings(string[] arr)
         {
+            foreach (Control c in Controls)
+            {
+                if (c is TextBox)
+                {
+                    string cname = c.Name;
+                    
+                }
+            }
+        }
 
+
+
+        private void locationButton_Click(object sender, EventArgs e)
+        {
+           FolderBrowserDialog fdb = new FolderBrowserDialog();
+            fdb.RootFolder = Environment.SpecialFolder.MyComputer;
+            if (fdb.ShowDialog() == DialogResult.OK)
+            {
+                locationTB.Text = fdb.SelectedPath;
+            }
         }
     }
 }
