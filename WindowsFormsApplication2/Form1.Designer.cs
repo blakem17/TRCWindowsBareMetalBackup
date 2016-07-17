@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.startButton = new System.Windows.Forms.Button();
+            this.loadfileButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.browseButton = new System.Windows.Forms.Button();
             this.selDirectoBox = new System.Windows.Forms.TextBox();
-            this.directoryLabel = new System.Windows.Forms.Label();
+            this.configLabel = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.companyTB = new System.Windows.Forms.TextBox();
             this.credTB = new System.Windows.Forms.TextBox();
@@ -55,15 +55,15 @@
             this.locationButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // startButton
+            // loadfileButton
             // 
-            this.startButton.Location = new System.Drawing.Point(311, 41);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(75, 23);
-            this.startButton.TabIndex = 0;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            this.loadfileButton.Location = new System.Drawing.Point(311, 41);
+            this.loadfileButton.Name = "loadfileButton";
+            this.loadfileButton.Size = new System.Drawing.Size(75, 23);
+            this.loadfileButton.TabIndex = 0;
+            this.loadfileButton.Text = "Load Config";
+            this.loadfileButton.UseVisualStyleBackColor = true;
+            this.loadfileButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // textBox
             // 
@@ -91,14 +91,14 @@
             this.selDirectoBox.TabIndex = 3;
             this.selDirectoBox.TextChanged += new System.EventHandler(this.seldirectoryBox_TextChanged);
             // 
-            // directoryLabel
+            // configLabel
             // 
-            this.directoryLabel.AutoSize = true;
-            this.directoryLabel.Location = new System.Drawing.Point(26, 10);
-            this.directoryLabel.Name = "directoryLabel";
-            this.directoryLabel.Size = new System.Drawing.Size(49, 13);
-            this.directoryLabel.TabIndex = 4;
-            this.directoryLabel.Text = "Directory";
+            this.configLabel.AutoSize = true;
+            this.configLabel.Location = new System.Drawing.Point(26, 10);
+            this.configLabel.Name = "configLabel";
+            this.configLabel.Size = new System.Drawing.Size(100, 13);
+            this.configLabel.TabIndex = 4;
+            this.configLabel.Text = "Config File Location";
             // 
             // openFileDialog1
             // 
@@ -228,6 +228,11 @@
             // pathTYCB
             // 
             this.pathTYCB.FormattingEnabled = true;
+            this.pathTYCB.Items.AddRange(new object[] {
+            "DISK",
+            "NETWORKPATH",
+            "VOLUME",
+            "VOLUMEPATH"});
             this.pathTYCB.Location = new System.Drawing.Point(706, 96);
             this.pathTYCB.Name = "pathTYCB";
             this.pathTYCB.Size = new System.Drawing.Size(161, 21);
@@ -285,11 +290,11 @@
             this.Controls.Add(this.directoryTB);
             this.Controls.Add(this.credTB);
             this.Controls.Add(this.companyTB);
-            this.Controls.Add(this.directoryLabel);
+            this.Controls.Add(this.configLabel);
             this.Controls.Add(this.selDirectoBox);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.textBox);
-            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.loadfileButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -299,11 +304,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Button loadfileButton;
         private System.Windows.Forms.RichTextBox textBox;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.TextBox selDirectoBox;
-        private System.Windows.Forms.Label directoryLabel;
+        private System.Windows.Forms.Label configLabel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox companyTB;
         private System.Windows.Forms.TextBox credTB;
