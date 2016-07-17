@@ -22,15 +22,16 @@ namespace WindowsFormsApplication2
         private string smtpIdent = "$smtpServer =";
         private string pthTpIdent = "$pathType =";
         private string credIdent = "$credential =";
-        private string dirIdent = "$dir =";
+        private string dirIdent = "$directory =";
         private string lgFlIdent = "$logFile =";
         private string[] setArr = new string[8];
+        private string[] updateArr = new string[7] { "company", "cred", "directory", "emailTo", "emailFR", "log", "smtp"};
 
 
         public Form1()
         {
             InitializeComponent();
-            directoryBox.Text = "";
+            selDirectoBox.Text = "";
             setArr[0] = compIdent;
             setArr[1] = credIdent;
             setArr[2] = dirIdent;
@@ -44,14 +45,14 @@ namespace WindowsFormsApplication2
         private void startButton_Click(object sender, EventArgs e)
         {
             textBox.Text = filelocation;
-            if  (directoryBox.Text.Equals(noSelStr))
+            if  (selDirectoBox.Text.Equals(noSelStr))
             {
                 textBox.Text = noSelStr;
             }
-            if (directoryBox.Text.Equals(""))
+            if (selDirectoBox.Text.Equals(""))
             {
                 textBox.Text = noSelStr;
-                directoryBox.Text = noSelStr;
+                selDirectoBox.Text = noSelStr;
             }
             if (File.Exists(filelocation))
             {
@@ -93,7 +94,7 @@ namespace WindowsFormsApplication2
                             foreach (var item in matches)
                             {
                                 string u = item.ToString().Replace("\"", "");
-                                directoryBox.Text = u;
+                                selDirectoBox.Text = u;
                             }
                         }
                         if (s.Contains(setArr[3]))
@@ -153,7 +154,7 @@ namespace WindowsFormsApplication2
             }
             else
             {
-                if(!File.Exists(filelocation) && directoryBox.Text.Equals(""))
+                if(!File.Exists(filelocation) && selDirectoBox.Text.Equals(""))
                 {
                     textBox.Text = "File Does Not Exit";
                 }
@@ -167,11 +168,11 @@ namespace WindowsFormsApplication2
             filelocation = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
             if (filelocation.Equals("openFileDialog1"))
             {
-                directoryBox.Text = noSelStr;
+                selDirectoBox.Text = noSelStr;
             }
             else
             {
-                directoryBox.Text = filelocation;
+                selDirectoBox.Text = filelocation;
             }
         }
         static string ConvertStringArrayToString(string[] array)
@@ -189,6 +190,40 @@ namespace WindowsFormsApplication2
         }
 
         private void pathTYCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveButtton_Click(object sender, EventArgs e)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    foreach (string d in updateArr)
+                    {
+                        string tbName = c.Name;
+                        if (tbName.Contains(d))
+                        {
+                            string txtboxInput = c.Text;
+                            textBox.AppendText(Environment.NewLine + txtboxInput);
+                            foreach (string t in setArr)
+                            {
+                                if (t.Contains(d))
+                                {
+                                    string toadd = t + txtboxInput;
+                                    textBox.AppendText(Environment.NewLine + toadd);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+        private void seldirectoryBox_TextChanged(object sender, EventArgs e)
         {
 
         }

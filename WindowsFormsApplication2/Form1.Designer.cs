@@ -31,7 +31,7 @@
             this.startButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.browseButton = new System.Windows.Forms.Button();
-            this.directoryBox = new System.Windows.Forms.TextBox();
+            this.selDirectoBox = new System.Windows.Forms.TextBox();
             this.directoryLabel = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.companyTB = new System.Windows.Forms.TextBox();
@@ -81,12 +81,13 @@
             this.browseButton.UseVisualStyleBackColor = true;
             this.browseButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // directoryBox
+            // selDirectoBox
             // 
-            this.directoryBox.Location = new System.Drawing.Point(26, 29);
-            this.directoryBox.Name = "directoryBox";
-            this.directoryBox.Size = new System.Drawing.Size(279, 20);
-            this.directoryBox.TabIndex = 3;
+            this.selDirectoBox.Location = new System.Drawing.Point(26, 29);
+            this.selDirectoBox.Name = "selDirectoBox";
+            this.selDirectoBox.Size = new System.Drawing.Size(279, 20);
+            this.selDirectoBox.TabIndex = 3;
+            this.selDirectoBox.TextChanged += new System.EventHandler(this.seldirectoryBox_TextChanged);
             // 
             // directoryLabel
             // 
@@ -239,6 +240,7 @@
             this.saveButtton.TabIndex = 22;
             this.saveButtton.Text = "Save";
             this.saveButtton.UseVisualStyleBackColor = true;
+            this.saveButtton.Click += new System.EventHandler(this.saveButtton_Click);
             // 
             // Form1
             // 
@@ -263,7 +265,7 @@
             this.Controls.Add(this.credTB);
             this.Controls.Add(this.companyTB);
             this.Controls.Add(this.directoryLabel);
-            this.Controls.Add(this.directoryBox);
+            this.Controls.Add(this.selDirectoBox);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.startButton);
@@ -279,7 +281,7 @@
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.RichTextBox textBox;
         private System.Windows.Forms.Button browseButton;
-        private System.Windows.Forms.TextBox directoryBox;
+        private System.Windows.Forms.TextBox selDirectoBox;
         private System.Windows.Forms.Label directoryLabel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox companyTB;
