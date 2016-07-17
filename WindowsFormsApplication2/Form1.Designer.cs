@@ -30,7 +30,7 @@
         {
             this.startButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.browseButton = new System.Windows.Forms.Button();
             this.directoryBox = new System.Windows.Forms.TextBox();
             this.directoryLabel = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -50,6 +50,7 @@
             this.pathTyLB = new System.Windows.Forms.Label();
             this.smtpLB = new System.Windows.Forms.Label();
             this.pathTYCB = new System.Windows.Forms.ComboBox();
+            this.saveButtton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // startButton
@@ -70,15 +71,15 @@
             this.textBox.TabIndex = 1;
             this.textBox.Text = "";
             // 
-            // button1
+            // browseButton
             // 
-            this.button1.Location = new System.Drawing.Point(311, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Browse";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.browseButton.Location = new System.Drawing.Point(311, 12);
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
+            this.browseButton.TabIndex = 2;
+            this.browseButton.Text = "Browse";
+            this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // directoryBox
             // 
@@ -230,11 +231,21 @@
             this.pathTYCB.TabIndex = 21;
             this.pathTYCB.SelectedIndexChanged += new System.EventHandler(this.pathTYCB_SelectedIndexChanged);
             // 
+            // saveButtton
+            // 
+            this.saveButtton.Location = new System.Drawing.Point(392, 12);
+            this.saveButtton.Name = "saveButtton";
+            this.saveButtton.Size = new System.Drawing.Size(75, 23);
+            this.saveButtton.TabIndex = 22;
+            this.saveButtton.Text = "Save";
+            this.saveButtton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 538);
+            this.Controls.Add(this.saveButtton);
             this.Controls.Add(this.pathTYCB);
             this.Controls.Add(this.smtpLB);
             this.Controls.Add(this.pathTyLB);
@@ -253,7 +264,7 @@
             this.Controls.Add(this.companyTB);
             this.Controls.Add(this.directoryLabel);
             this.Controls.Add(this.directoryBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.browseButton);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.startButton);
             this.Name = "Form1";
@@ -267,7 +278,7 @@
 
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.RichTextBox textBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.TextBox directoryBox;
         private System.Windows.Forms.Label directoryLabel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -287,6 +298,7 @@
         private System.Windows.Forms.Label pathTyLB;
         private System.Windows.Forms.Label smtpLB;
         private System.Windows.Forms.ComboBox pathTYCB;
+        private System.Windows.Forms.Button saveButtton;
     }
 }
 
