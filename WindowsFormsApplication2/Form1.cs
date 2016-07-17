@@ -25,7 +25,7 @@ namespace WindowsFormsApplication2
         private string dirIdent = "$directory =";
         private string lgFlIdent = "$logFile =";
         private string[] setArr = new string[8];
-        private string[] updateArr = new string[7] { "company", "cred", "directory", "emailTo", "emailFR", "log", "smtp"};
+        private string[] updateArr = new string[7] { "company", "cred", "directory", "emailTo", "emailF", "log", "smtp"};
 
 
         public Form1()
@@ -59,97 +59,47 @@ namespace WindowsFormsApplication2
                 textBox.Text = "";
                 string[] fileTextArr = File.ReadAllLines(filelocation);
                 string fileText = ConvertStringArrayToString(fileTextArr);
-                foreach (string s in fileTextArr)
+                foreach (string t in setArr)
                 {
-                    foreach (string t in setArr)
+                    foreach (string s in fileTextArr)
                     {
-                    if (s.Contains(t))
-                    {
-                        textBox.AppendText(Environment.NewLine + s);
-                    }
-                        if (s.Contains(setArr[0]))
+                        if (s.Contains(t))
                         {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
+                            string scont = s;
+                            if (s.Contains(" = \""))
                             {
-                                string u = item.ToString().Replace("\"", "");
-                                companyTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[1]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"","");
-                                credTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[2]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"", "");
-                                selDirectoBox.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[3]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"", "");
-                                emailToTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[4]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"", "");
-                                emailFRTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[5]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"", "");
-                                logTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[6]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"", "");
-                                pathTYCB.Text = u;
-                            }
-                        }
-                        if (s.Contains(setArr[7]))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-                                string u = item.ToString().Replace("\"","");
-                                smtpTB.Text = u;
-                            }
+                                    textBox.AppendText(Environment.NewLine + s);
+                                foreach (string upstring in updateArr)
+                                {
+                                    if (s.Contains(upstring))
+                                    {
+                                        foreach (Control c in this.Controls)
+                                        {
+                                            string cname = c.Name;
+                                            if (c is TextBox)
+                                            {
+                                                if (cname.Contains(upstring))
+                                                {
+                                                    var reg = new Regex("\".*?\"");
+                                                    var matches = reg.Matches(s);
+                                                    foreach (var item in matches)
+                                                    {
 
+                                                        string u = item.ToString().Replace("\"", "");
+                                                        c.Text = u;
+
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
-            }
+
+                }
+                
 
             }
             else
