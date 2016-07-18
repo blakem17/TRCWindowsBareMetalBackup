@@ -386,5 +386,10 @@ namespace WindowsFormsApplication2
                 locationTB.Text = fdb.SelectedPath;
             }
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
