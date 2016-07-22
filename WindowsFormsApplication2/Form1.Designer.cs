@@ -31,7 +31,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.locationButton = new System.Windows.Forms.Button();
             this.companyTB = new System.Windows.Forms.TextBox();
@@ -52,6 +52,7 @@
             this.credLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
+            this.emailCheck = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +72,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.emailCheck);
+            this.tabPage1.Controls.Add(this.startButton);
             this.tabPage1.Controls.Add(this.textBox);
             this.tabPage1.Controls.Add(this.locationButton);
             this.tabPage1.Controls.Add(this.companyTB);
@@ -101,15 +103,15 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // button1
+            // startButton
             // 
-            this.button1.Location = new System.Drawing.Point(702, 205);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.startButton.Location = new System.Drawing.Point(907, 234);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(75, 23);
+            this.startButton.TabIndex = 25;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBox
             // 
@@ -319,6 +321,16 @@
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
             // 
+            // emailCheck
+            // 
+            this.emailCheck.AutoSize = true;
+            this.emailCheck.Location = new System.Drawing.Point(702, 181);
+            this.emailCheck.Name = "emailCheck";
+            this.emailCheck.Size = new System.Drawing.Size(136, 17);
+            this.emailCheck.TabIndex = 26;
+            this.emailCheck.Text = "Enable Eamil Reporting";
+            this.emailCheck.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,7 +372,8 @@
         private System.Windows.Forms.Label credLB;
         private System.Windows.Forms.TextBox smtpTB;
         private System.Windows.Forms.Label companyLB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.CheckBox emailCheck;
     }
 }
 

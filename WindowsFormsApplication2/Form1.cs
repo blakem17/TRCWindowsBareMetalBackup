@@ -75,8 +75,11 @@ namespace WindowsFormsApplication2
 
                                 string u = item.ToString().Replace("\"", "");
                                 emailToTB.Text = u;
-
+                            if (emailToTB.Text.Length > 0)
+                            {
+                                emailCheck.Checked = true;
                             }
+                        }
                         }
                         if (s.Contains(emFrIdent))
                         {
@@ -87,8 +90,11 @@ namespace WindowsFormsApplication2
 
                                 string u = item.ToString().Replace("\"", "");
                                 emailFTB.Text = u;
-
+                            if (emailFTB.Text.Length > 0)
+                            {
+                                emailCheck.Checked = true;
                             }
+                        }
                         }
                         if (s.Contains(smtpIdent))
                         {
@@ -99,8 +105,11 @@ namespace WindowsFormsApplication2
 
                                 string u = item.ToString().Replace("\"", "");
                                 smtpTB.Text = u;
-
+                            if (smtpTB.Text.Length > 0)
+                            {
+                                emailCheck.Checked = true;
                             }
+                        }
                         }
                         if (s.Contains(pthTpIdent))
                         {
@@ -189,9 +198,13 @@ namespace WindowsFormsApplication2
                             var matches = reg.Matches(s);
                             foreach (var item in matches)
                             {
-
+          
                                 string u = item.ToString().Replace("\"", "");
                                 emailToTB.Text = u;
+                                if (emailToTB.Text.Length > 0)
+                                {
+                                emailCheck.Checked = true;
+                            }
 
                             }
                         }
@@ -204,6 +217,10 @@ namespace WindowsFormsApplication2
 
                                 string u = item.ToString().Replace("\"", "");
                                 emailFTB.Text = u;
+                                if (emailFTB.Text.Length > 0)
+                                {
+                                emailCheck.Checked = true;
+                            }
 
                             }
                         }
@@ -216,6 +233,10 @@ namespace WindowsFormsApplication2
 
                                 string u = item.ToString().Replace("\"", "");
                                 smtpTB.Text = u;
+                                if (smtpTB.Text.Length > 0)
+                                {
+                                emailCheck.Checked = true;
+                            }
 
                             }
                         }
