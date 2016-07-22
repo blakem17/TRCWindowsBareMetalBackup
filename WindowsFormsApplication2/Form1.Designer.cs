@@ -31,17 +31,14 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.locationButton = new System.Windows.Forms.Button();
             this.companyTB = new System.Windows.Forms.TextBox();
             this.locationTB = new System.Windows.Forms.TextBox();
-            this.loadfileButton = new System.Windows.Forms.Button();
             this.saveButtton = new System.Windows.Forms.Button();
-            this.browseButton = new System.Windows.Forms.Button();
             this.pathTYCB = new System.Windows.Forms.ComboBox();
-            this.selDirectoBox = new System.Windows.Forms.TextBox();
             this.smtpLB = new System.Windows.Forms.Label();
-            this.configLabel = new System.Windows.Forms.Label();
             this.pathTyLB = new System.Windows.Forms.Label();
             this.credTB = new System.Windows.Forms.TextBox();
             this.logLB = new System.Windows.Forms.Label();
@@ -55,7 +52,6 @@
             this.credLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -80,13 +76,9 @@
             this.tabPage1.Controls.Add(this.locationButton);
             this.tabPage1.Controls.Add(this.companyTB);
             this.tabPage1.Controls.Add(this.locationTB);
-            this.tabPage1.Controls.Add(this.loadfileButton);
             this.tabPage1.Controls.Add(this.saveButtton);
-            this.tabPage1.Controls.Add(this.browseButton);
             this.tabPage1.Controls.Add(this.pathTYCB);
-            this.tabPage1.Controls.Add(this.selDirectoBox);
             this.tabPage1.Controls.Add(this.smtpLB);
-            this.tabPage1.Controls.Add(this.configLabel);
             this.tabPage1.Controls.Add(this.pathTyLB);
             this.tabPage1.Controls.Add(this.credTB);
             this.tabPage1.Controls.Add(this.logLB);
@@ -108,6 +100,16 @@
             this.tabPage1.Text = "Configuration";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(702, 205);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBox
             // 
@@ -147,22 +149,10 @@
             this.locationTB.Size = new System.Drawing.Size(163, 20);
             this.locationTB.TabIndex = 23;
             // 
-            // loadfileButton
-            // 
-            this.loadfileButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.loadfileButton.Location = new System.Drawing.Point(909, 205);
-            this.loadfileButton.MinimumSize = new System.Drawing.Size(10, 10);
-            this.loadfileButton.Name = "loadfileButton";
-            this.loadfileButton.Size = new System.Drawing.Size(75, 23);
-            this.loadfileButton.TabIndex = 0;
-            this.loadfileButton.Text = "Load Config";
-            this.loadfileButton.UseVisualStyleBackColor = true;
-            this.loadfileButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
             // saveButtton
             // 
             this.saveButtton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.saveButtton.Location = new System.Drawing.Point(909, 176);
+            this.saveButtton.Location = new System.Drawing.Point(705, 234);
             this.saveButtton.MinimumSize = new System.Drawing.Size(10, 10);
             this.saveButtton.Name = "saveButtton";
             this.saveButtton.Size = new System.Drawing.Size(75, 23);
@@ -170,18 +160,6 @@
             this.saveButtton.Text = "Save";
             this.saveButtton.UseVisualStyleBackColor = true;
             this.saveButtton.Click += new System.EventHandler(this.saveButtton_Click);
-            // 
-            // browseButton
-            // 
-            this.browseButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.browseButton.Location = new System.Drawing.Point(824, 205);
-            this.browseButton.MinimumSize = new System.Drawing.Size(10, 10);
-            this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(75, 23);
-            this.browseButton.TabIndex = 2;
-            this.browseButton.Text = "Browse";
-            this.browseButton.UseVisualStyleBackColor = true;
-            this.browseButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // pathTYCB
             // 
@@ -199,16 +177,6 @@
             this.pathTYCB.TabIndex = 21;
             this.pathTYCB.SelectedIndexChanged += new System.EventHandler(this.pathTYCB_SelectedIndexChanged);
             // 
-            // selDirectoBox
-            // 
-            this.selDirectoBox.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.selDirectoBox.Location = new System.Drawing.Point(705, 234);
-            this.selDirectoBox.MinimumSize = new System.Drawing.Size(10, 10);
-            this.selDirectoBox.Name = "selDirectoBox";
-            this.selDirectoBox.Size = new System.Drawing.Size(279, 20);
-            this.selDirectoBox.TabIndex = 3;
-            this.selDirectoBox.TextChanged += new System.EventHandler(this.seldirectoryBox_TextChanged);
-            // 
             // smtpLB
             // 
             this.smtpLB.AutoSize = true;
@@ -219,15 +187,6 @@
             this.smtpLB.Size = new System.Drawing.Size(37, 13);
             this.smtpLB.TabIndex = 20;
             this.smtpLB.Text = "SMTP";
-            // 
-            // configLabel
-            // 
-            this.configLabel.AutoSize = true;
-            this.configLabel.Location = new System.Drawing.Point(705, 215);
-            this.configLabel.Name = "configLabel";
-            this.configLabel.Size = new System.Drawing.Size(88, 13);
-            this.configLabel.TabIndex = 4;
-            this.configLabel.Text = "Configuration File";
             // 
             // pathTyLB
             // 
@@ -360,16 +319,6 @@
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(739, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,13 +344,9 @@
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.TextBox companyTB;
         private System.Windows.Forms.TextBox locationTB;
-        private System.Windows.Forms.Button loadfileButton;
         private System.Windows.Forms.Button saveButtton;
-        private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.ComboBox pathTYCB;
-        private System.Windows.Forms.TextBox selDirectoBox;
         private System.Windows.Forms.Label smtpLB;
-        private System.Windows.Forms.Label configLabel;
         private System.Windows.Forms.Label pathTyLB;
         private System.Windows.Forms.TextBox credTB;
         private System.Windows.Forms.Label logLB;
