@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using Microsoft.Win32;
 using RealClassUpdater.Properties;
 
 namespace WindowsFormsApplication2
@@ -29,7 +31,6 @@ namespace WindowsFormsApplication2
         private string locationIdent = "$location =";
         private string[] setArr = new string[8];
 
-
         public Form1()
         {
             InitializeComponent();
@@ -42,9 +43,19 @@ namespace WindowsFormsApplication2
             setArr[5] = lgFlIdent;
             setArr[6] = pthTpIdent;
             setArr[7] = smtpIdent;
-            byte[] myfile = Resources.WindowsBMR;
-            string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
-            textBox.Text = myfileStr;
+            try
+            {
+                RegistryKey regKey = Registry.CurrentUser;
+            regKey = regKey.OpenSubKey(@"Software\Blakem\UserChoice");
+            textBox.Text = regKey.GetValue("InstallDirectory").ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            //            byte[] myfile = Resources.WindowsBMR;
+            //            string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
+            //            textBox.Text = myfileStr;
 
         }
         private void seldirectoryBox_TextChanged(object sender, EventArgs e)
