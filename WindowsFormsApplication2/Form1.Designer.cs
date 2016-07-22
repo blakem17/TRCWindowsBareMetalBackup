@@ -109,7 +109,7 @@
             // 
             // textBox
             // 
-            this.textBox.Location = new System.Drawing.Point(-4, 14);
+            this.textBox.Location = new System.Drawing.Point(12, 16);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(687, 470);
             this.textBox.TabIndex = 1;
@@ -118,7 +118,7 @@
             // locationButton
             // 
             this.locationButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.locationButton.Location = new System.Drawing.Point(860, 339);
+            this.locationButton.Location = new System.Drawing.Point(869, 341);
             this.locationButton.MinimumSize = new System.Drawing.Size(10, 10);
             this.locationButton.Name = "locationButton";
             this.locationButton.Size = new System.Drawing.Size(69, 23);
@@ -130,7 +130,7 @@
             // companyTB
             // 
             this.companyTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.companyTB.Location = new System.Drawing.Point(693, 261);
+            this.companyTB.Location = new System.Drawing.Point(702, 263);
             this.companyTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.companyTB.Name = "companyTB";
             this.companyTB.Size = new System.Drawing.Size(161, 20);
@@ -139,7 +139,7 @@
             // locationTB
             // 
             this.locationTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.locationTB.Location = new System.Drawing.Point(693, 339);
+            this.locationTB.Location = new System.Drawing.Point(702, 341);
             this.locationTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.locationTB.Name = "locationTB";
             this.locationTB.Size = new System.Drawing.Size(163, 20);
@@ -148,7 +148,7 @@
             // loadfileButton
             // 
             this.loadfileButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.loadfileButton.Location = new System.Drawing.Point(900, 203);
+            this.loadfileButton.Location = new System.Drawing.Point(909, 205);
             this.loadfileButton.MinimumSize = new System.Drawing.Size(10, 10);
             this.loadfileButton.Name = "loadfileButton";
             this.loadfileButton.Size = new System.Drawing.Size(75, 23);
@@ -160,7 +160,7 @@
             // saveButtton
             // 
             this.saveButtton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.saveButtton.Location = new System.Drawing.Point(900, 174);
+            this.saveButtton.Location = new System.Drawing.Point(909, 176);
             this.saveButtton.MinimumSize = new System.Drawing.Size(10, 10);
             this.saveButtton.Name = "saveButtton";
             this.saveButtton.Size = new System.Drawing.Size(75, 23);
@@ -172,7 +172,7 @@
             // browseButton
             // 
             this.browseButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.browseButton.Location = new System.Drawing.Point(815, 203);
+            this.browseButton.Location = new System.Drawing.Point(824, 205);
             this.browseButton.MinimumSize = new System.Drawing.Size(10, 10);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(75, 23);
@@ -190,7 +190,7 @@
             "NETWORKPATH",
             "VOLUME",
             "VOLUMEPATH"});
-            this.pathTYCB.Location = new System.Drawing.Point(693, 312);
+            this.pathTYCB.Location = new System.Drawing.Point(702, 314);
             this.pathTYCB.MinimumSize = new System.Drawing.Size(10, 0);
             this.pathTYCB.Name = "pathTYCB";
             this.pathTYCB.Size = new System.Drawing.Size(161, 21);
@@ -200,7 +200,7 @@
             // selDirectoBox
             // 
             this.selDirectoBox.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.selDirectoBox.Location = new System.Drawing.Point(696, 232);
+            this.selDirectoBox.Location = new System.Drawing.Point(705, 234);
             this.selDirectoBox.MinimumSize = new System.Drawing.Size(10, 10);
             this.selDirectoBox.Name = "selDirectoBox";
             this.selDirectoBox.Size = new System.Drawing.Size(279, 20);
@@ -211,7 +211,7 @@
             // 
             this.smtpLB.AutoSize = true;
             this.smtpLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.smtpLB.Location = new System.Drawing.Point(860, 444);
+            this.smtpLB.Location = new System.Drawing.Point(869, 446);
             this.smtpLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.smtpLB.Name = "smtpLB";
             this.smtpLB.Size = new System.Drawing.Size(37, 13);
@@ -221,7 +221,7 @@
             // configLabel
             // 
             this.configLabel.AutoSize = true;
-            this.configLabel.Location = new System.Drawing.Point(696, 213);
+            this.configLabel.Location = new System.Drawing.Point(705, 215);
             this.configLabel.Name = "configLabel";
             this.configLabel.Size = new System.Drawing.Size(88, 13);
             this.configLabel.TabIndex = 4;
@@ -231,7 +231,7 @@
             // 
             this.pathTyLB.AutoSize = true;
             this.pathTyLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.pathTyLB.Location = new System.Drawing.Point(861, 315);
+            this.pathTyLB.Location = new System.Drawing.Point(870, 317);
             this.pathTyLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.pathTyLB.Name = "pathTyLB";
             this.pathTyLB.Size = new System.Drawing.Size(56, 13);
@@ -241,7 +241,7 @@
             // credTB
             // 
             this.credTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.credTB.Location = new System.Drawing.Point(693, 287);
+            this.credTB.Location = new System.Drawing.Point(702, 289);
             this.credTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.credTB.Name = "credTB";
             this.credTB.Size = new System.Drawing.Size(161, 20);
@@ -251,7 +251,7 @@
             // 
             this.logLB.AutoSize = true;
             this.logLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.logLB.Location = new System.Drawing.Point(865, 396);
+            this.logLB.Location = new System.Drawing.Point(874, 398);
             this.logLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.logLB.Name = "logLB";
             this.logLB.Size = new System.Drawing.Size(44, 13);
@@ -261,7 +261,7 @@
             // directoryTB
             // 
             this.directoryTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.directoryTB.Location = new System.Drawing.Point(693, 363);
+            this.directoryTB.Location = new System.Drawing.Point(702, 365);
             this.directoryTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.directoryTB.Name = "directoryTB";
             this.directoryTB.Size = new System.Drawing.Size(161, 20);
@@ -271,7 +271,7 @@
             // 
             this.emailFRLB.AutoSize = true;
             this.emailFRLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailFRLB.Location = new System.Drawing.Point(862, 418);
+            this.emailFRLB.Location = new System.Drawing.Point(871, 420);
             this.emailFRLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailFRLB.Name = "emailFRLB";
             this.emailFRLB.Size = new System.Drawing.Size(58, 13);
@@ -281,7 +281,7 @@
             // emailToTB
             // 
             this.emailToTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailToTB.Location = new System.Drawing.Point(693, 464);
+            this.emailToTB.Location = new System.Drawing.Point(702, 466);
             this.emailToTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailToTB.Name = "emailToTB";
             this.emailToTB.Size = new System.Drawing.Size(161, 20);
@@ -291,7 +291,7 @@
             // 
             this.emailToLB.AutoSize = true;
             this.emailToLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailToLB.Location = new System.Drawing.Point(858, 467);
+            this.emailToLB.Location = new System.Drawing.Point(867, 469);
             this.emailToLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailToLB.Name = "emailToLB";
             this.emailToLB.Size = new System.Drawing.Size(48, 13);
@@ -301,7 +301,7 @@
             // emailFTB
             // 
             this.emailFTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailFTB.Location = new System.Drawing.Point(693, 415);
+            this.emailFTB.Location = new System.Drawing.Point(702, 417);
             this.emailFTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailFTB.Name = "emailFTB";
             this.emailFTB.Size = new System.Drawing.Size(161, 20);
@@ -311,7 +311,7 @@
             // 
             this.directoryLB.AutoSize = true;
             this.directoryLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.directoryLB.Location = new System.Drawing.Point(860, 370);
+            this.directoryLB.Location = new System.Drawing.Point(869, 372);
             this.directoryLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.directoryLB.Name = "directoryLB";
             this.directoryLB.Size = new System.Drawing.Size(66, 13);
@@ -321,7 +321,7 @@
             // logTB
             // 
             this.logTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.logTB.Location = new System.Drawing.Point(693, 389);
+            this.logTB.Location = new System.Drawing.Point(702, 391);
             this.logTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.logTB.Name = "logTB";
             this.logTB.Size = new System.Drawing.Size(161, 20);
@@ -331,7 +331,7 @@
             // 
             this.credLB.AutoSize = true;
             this.credLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.credLB.Location = new System.Drawing.Point(857, 294);
+            this.credLB.Location = new System.Drawing.Point(866, 296);
             this.credLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.credLB.Name = "credLB";
             this.credLB.Size = new System.Drawing.Size(59, 13);
@@ -341,7 +341,7 @@
             // smtpTB
             // 
             this.smtpTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.smtpTB.Location = new System.Drawing.Point(693, 441);
+            this.smtpTB.Location = new System.Drawing.Point(702, 443);
             this.smtpTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.smtpTB.Name = "smtpTB";
             this.smtpTB.Size = new System.Drawing.Size(161, 20);
@@ -351,7 +351,7 @@
             // 
             this.companyLB.AutoSize = true;
             this.companyLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.companyLB.Location = new System.Drawing.Point(860, 264);
+            this.companyLB.Location = new System.Drawing.Point(869, 266);
             this.companyLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.companyLB.Name = "companyLB";
             this.companyLB.Size = new System.Drawing.Size(51, 13);
