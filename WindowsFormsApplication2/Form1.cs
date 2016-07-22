@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using System.Reflection;
 using Microsoft.Win32;
 using RealClassUpdater.Properties;
+using System.Management.Automation;
+
 
 namespace WindowsFormsApplication2
 {
@@ -400,7 +402,15 @@ namespace WindowsFormsApplication2
                     {
                         if (line.Contains(emToIdent))
                         {
-                            textBox.Text = textBox.Text.Replace(line, emToIdent + " \"" + uEmailTo + "\"");
+                            if (emailToTB.Enabled == true)
+                            {
+                                textBox.Text = textBox.Text.Replace(line, emToIdent + " \"" + uEmailTo + "\"");
+                            }
+                            else
+                            {
+                                textBox.Text = textBox.Text.Replace(line, emToIdent + " \"" + "\"");
+                            }
+
                         }
                         emailtoupdate++;
                     }
@@ -411,7 +421,15 @@ namespace WindowsFormsApplication2
                     {
                         if (line.Contains(emFrIdent))
                         {
-                            textBox.Text = textBox.Text.Replace(line, emFrIdent + " \"" + uEmailFr + "\"");
+                            if (emailFTB.Enabled == true)
+                            {
+                                textBox.Text = textBox.Text.Replace(line, emFrIdent + " \"" + uEmailFr + "\"");
+                            }
+                            else
+                            {
+                                textBox.Text = textBox.Text.Replace(line, emFrIdent + " \"" + "\"");
+                            }
+
                         }
                         emailfrupdate++;
                     }
@@ -434,7 +452,15 @@ namespace WindowsFormsApplication2
                     {
                         if (line.Contains(smtpIdent))
                         {
-                            textBox.Text = textBox.Text.Replace(line, smtpIdent + " \"" + uSmtp + "\"");
+                            if (smtpTB.Enabled == true)
+                            {
+                                textBox.Text = textBox.Text.Replace(line, smtpIdent + " \"" + uSmtp + "\"");
+                            }
+                            else
+                            {
+                                textBox.Text = textBox.Text.Replace(line, smtpIdent + " \"" + "\"");
+                            }
+
                         }
                         smtpupdate++;
                     }
@@ -504,6 +530,13 @@ namespace WindowsFormsApplication2
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void emailCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            emailToTB.Enabled = (emailCheck.CheckState == CheckState.Checked);
+            emailFTB.Enabled = (emailCheck.CheckState == CheckState.Checked);
+            smtpTB.Enabled = (emailCheck.CheckState == CheckState.Checked);
         }
     }
 }

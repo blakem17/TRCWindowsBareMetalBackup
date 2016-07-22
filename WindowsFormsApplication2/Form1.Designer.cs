@@ -330,6 +330,7 @@
             this.emailCheck.TabIndex = 26;
             this.emailCheck.Text = "Enable Eamil Reporting";
             this.emailCheck.UseVisualStyleBackColor = true;
+            this.emailCheck.CheckedChanged += new System.EventHandler(this.emailCheck_CheckedChanged);
             // 
             // Form1
             // 

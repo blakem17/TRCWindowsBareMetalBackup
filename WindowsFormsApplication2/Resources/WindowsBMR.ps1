@@ -3,17 +3,17 @@
 ####################  Backup	 10/14/2015#################################################
 ###########################################################################################
 ##################### User Defined Variables###############################################
-$companyName = "Blakem"
+$companyName = ""
 $compName = "$env:computername.$env:userdnsdomain"
-$emailTo = "me@blakemorgan.us"
-$emailFrom = "me@blakemorgan.us"
-$smtpServer = "smtp.o2.ie"
-$pathType = "NETWORKPATH"
-$location = "\\10.10.10.4\e"
+$emailTo = ""
+$emailFrom = ""
+$smtpServer = ""
+$pathType = ""
+$location = ""
 $credential = ""
-$directory = "C:\blakem"
+$directory = ""
 $dirExists = Test-Path $directory
-$logFile = "C:\blakem\log.txt"
+$logFile = ""
 $fileExists = Test-Path $logFile
 $sucStr = "The backup operation completed"
 
