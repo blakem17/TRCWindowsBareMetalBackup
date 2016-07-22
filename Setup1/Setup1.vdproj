@@ -272,6 +272,28 @@
                             "Transitive" = "11:FALSE"
                                 "Keys"
                                 {
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_0128CFB08BBC489494F684359FEB6491"
+                                    {
+                                    "Name" = "8:UserChoice"
+                                    "Condition" = "8:"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "DeleteAtUninstall" = "11:FALSE"
+                                    "Transitive" = "11:FALSE"
+                                        "Keys"
+                                        {
+                                        }
+                                        "Values"
+                                        {
+                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_ADEEFA03D14143B4913699B07900E8F9"
+                                            {
+                                            "Name" = "8:InstallDirectory"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "ValueTypes" = "3:1"
+                                            "Value" = "8:[TARGETDIR]"
+                                            }
+                                        }
+                                    }
                                 }
                                 "Values"
                                 {
