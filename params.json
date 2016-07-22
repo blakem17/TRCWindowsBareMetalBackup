@@ -1,0 +1,6 @@
+{
+  "name": "Configfileupdater1",
+  "tagline": "user interface for updating a script file",
+  "body": "This is currently a project for updating a script file. In the future it will become a piece of software that will utilize windows backup and powershell for managing backups.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
