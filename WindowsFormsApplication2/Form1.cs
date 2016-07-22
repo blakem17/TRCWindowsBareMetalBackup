@@ -20,7 +20,6 @@ namespace WindowsFormsApplication2
     {
         private const string noSelStr = "Please select a directory";
         private string filelocation = "";
-        private string scriptlocation = "";
         private string compIdent = "$companyName =";
         private string emToIdent = "$emailTo =";
         private string emFrIdent = "$emailFrom =";
@@ -31,11 +30,11 @@ namespace WindowsFormsApplication2
         private string lgFlIdent = "$logFile =";
         private string locationIdent = "$location =";
         private string[] setArr = new string[8];
+        string installDirectory = Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
 
         public Form1()
         {
             InitializeComponent();
-            selDirectoBox.Text = "";
             setArr[0] = compIdent;
             setArr[1] = credIdent;
             setArr[2] = dirIdent;
@@ -44,11 +43,6 @@ namespace WindowsFormsApplication2
             setArr[5] = lgFlIdent;
             setArr[6] = pthTpIdent;
             setArr[7] = smtpIdent;
-            try
-            {
-                RegistryKey regKey = Registry.CurrentUser;
-            regKey = regKey.OpenSubKey(@"Software\Blakem\UserChoice");
-            string installDirectory = regKey.GetValue("InstallDirectory").ToString();
             var scriptlocation = installDirectory + "WindowsBMR.ps1";
                 if (!File.Exists(scriptlocation))
                 {
@@ -287,22 +281,10 @@ namespace WindowsFormsApplication2
 
                     }
                 }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                this.Close();
-            }
 
         }
         private void seldirectoryBox_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        public void samplemethod()
-        {
-
 
         }
 
@@ -354,7 +336,8 @@ namespace WindowsFormsApplication2
             int smtpupdate = 0;
             int locationupdate = 0;
             int pathtypeupdate = 0;
-            if (File.Exists(filelocation))
+            string scriptlocation = installDirectory + "WindowsBMR.ps1";
+            if (File.Exists(scriptlocation))
             {
                 if (companyUpdate == 0)
                 {
@@ -462,7 +445,7 @@ namespace WindowsFormsApplication2
                 }
                 if (companyUpdate + credupdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate + smtpupdate + locationupdate + pathtypeupdate > 0 && !textBox.Text.Equals(noSelStr))
                 {
-                    File.WriteAllText(filelocation, textBox.Text);
+                    File.WriteAllText(scriptlocation, textBox.Text);
                 }
 
             }
