@@ -314,16 +314,6 @@ namespace WindowsFormsApplication2
         private void button1_Click(object sender, EventArgs e)
         {
 
-            openFileDialog1.ShowDialog();
-            filelocation = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
-            if (filelocation.Equals("openFileDialog1"))
-            {
-                selDirectoBox.Text = noSelStr;
-            }
-            else
-            {
-                selDirectoBox.Text = filelocation;
-            }
         }
         static string ConvertStringArrayToString(string[] array)
         {
@@ -346,7 +336,6 @@ namespace WindowsFormsApplication2
 
         private void saveButtton_Click(object sender, EventArgs e)
         {
-            selDirectoBox.Text = filelocation;
             string uCompany = companyTB.Text;
             string uCred = credTB.Text;
             string uDirectory = directoryTB.Text;
@@ -365,16 +354,6 @@ namespace WindowsFormsApplication2
             int smtpupdate = 0;
             int locationupdate = 0;
             int pathtypeupdate = 0;
-            selDirectoBox.Text = filelocation;
-            if (selDirectoBox.Text.Equals(noSelStr))
-            {
-                textBox.Text = noSelStr;
-            }
-            if (selDirectoBox.Text.Equals(""))
-            {
-                textBox.Text = noSelStr;
-                selDirectoBox.Text = noSelStr;
-            }
             if (File.Exists(filelocation))
             {
                 if (companyUpdate == 0)
