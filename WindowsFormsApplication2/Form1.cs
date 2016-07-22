@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Reflection;
+using RealClassUpdater.Properties;
 
 namespace WindowsFormsApplication2
 {
@@ -40,6 +42,9 @@ namespace WindowsFormsApplication2
             setArr[5] = lgFlIdent;
             setArr[6] = pthTpIdent;
             setArr[7] = smtpIdent;
+            byte[] myfile = Resources.WindowsBMR;
+            string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
+            textBox.Text = myfileStr;
 
         }
         private void seldirectoryBox_TextChanged(object sender, EventArgs e)
@@ -388,6 +393,11 @@ namespace WindowsFormsApplication2
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

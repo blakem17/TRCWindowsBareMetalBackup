@@ -111,7 +111,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WindowsBMR.ps1" />
+    <None Include="Resources\WindowsBMR.ps1" />
+    <None Include="WindowsBMR.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="WindowsFormsApplication2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

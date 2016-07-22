@@ -55,6 +55,7 @@
             this.credLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.textBox);
             this.tabPage1.Controls.Add(this.locationButton);
             this.tabPage1.Controls.Add(this.companyTB);
@@ -358,6 +360,16 @@
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(739, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +415,7 @@
         private System.Windows.Forms.Label credLB;
         private System.Windows.Forms.TextBox smtpTB;
         private System.Windows.Forms.Label companyLB;
+        private System.Windows.Forms.Button button1;
     }
 }
 

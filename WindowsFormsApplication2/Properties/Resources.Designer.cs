@@ -59,5 +59,15 @@ namespace RealClassUpdater.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WindowsBMR {
+            get {
+                object obj = ResourceManager.GetObject("WindowsBMR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
