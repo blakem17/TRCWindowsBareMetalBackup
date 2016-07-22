@@ -52,6 +52,7 @@ namespace WindowsFormsApplication2
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                this.Close();
             }
             //            byte[] myfile = Resources.WindowsBMR;
             //            string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
