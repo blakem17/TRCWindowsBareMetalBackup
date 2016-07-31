@@ -533,30 +533,40 @@ namespace WindowsFormsApplication2
         {
             var scriptlocation = installDirectory + "WindowsBMR.ps1";
             var scriptText = File.ReadAllText(scriptlocation);
-            PowerShell powerShell = PowerShell.Create();
-//            textBox.Text += (scriptText + "\r\n");
-
-            powerShell.AddCommand("Import-Module").AddArgument("ServerManager");
-            powerShell.AddCommand("Add-WindowsFeature").AddArgument("Windows-Server-Backup");
-            powerShell.AddScript(scriptText);
-            PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
-            outputCollection.DataAdded += outputCollection_DataAdded;
-            var results = powerShell.Invoke();
-
-            foreach (var item in results)
+            if (checkwindowsFeatureInsatlled() == true)
             {
-                string itemstring = item.ToString();
-                textBox.Text += (textBox.Text + "\r\n" + itemstring );
-            }
+                PowerShell powerShell = PowerShell.Create();
+                //            textBox.Text += (scriptText + "\r\n");
 
-            if (powerShell.Streams.Error.Count > 0)
-            {
-                var error = powerShell.Streams.Error.ReadAll() as Collection<ErrorRecord>;
-                foreach (ErrorRecord er in error)
+                powerShell.AddCommand("Import-Module").AddArgument("ServerManager");
+                powerShell.AddCommand("Add-WindowsFeature");
+                powerShell.AddArgument("Windows-Server-Backup");
+                powerShell.AddCommand("Add-WBBareMetalRecovery").AddArgument("-Policy $backupPolicy");
+                //            powerShell.AddScript(scriptText);
+                PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
+                outputCollection.DataAdded += outputCollection_DataAdded;
+                var results = powerShell.Invoke();
+
+                foreach (var item in results)
                 {
-                    textBox.Text = er.Exception.Message;
+                    string itemstring = item.ToString();
+                    textBox.Text += (textBox.Text + "\r\n" + itemstring);
+                }
+
+                if (powerShell.Streams.Error.Count > 0)
+                {
+                    var error = powerShell.Streams.Error.ReadAll() as Collection<ErrorRecord>;
+                    foreach (ErrorRecord er in error)
+                    {
+                        textBox.Text = er.Exception.Message;
+                    }
                 }
             }
+            else
+            {
+                textBox.Text = "Winddows Backup Feature Not installed";
+            }
+            
 
         }
 
@@ -571,6 +581,24 @@ namespace WindowsFormsApplication2
         {
             // do something when an object is written to the output stream
             textBox.Text += ("Object added to output.");
+        }
+
+        Boolean checkwindowsFeatureInsatlled()
+        {
+            PowerShell powerShell = PowerShell.Create();
+            powerShell.AddCommand("Get-WindowsFeature").AddArgument("Windows-Server-Backup");
+            PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
+            outputCollection.DataAdded += outputCollection_DataAdded;
+            var results = powerShell.Invoke();
+            if (results.ToString().Contains("Installed"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 
