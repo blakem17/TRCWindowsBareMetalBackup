@@ -574,6 +574,7 @@ namespace WindowsFormsApplication2
             {
                 if (checkwindowsFeatureInstallable() == true)
                 {
+                    textBox.AppendText(Environment.NewLine + "Server Backup Installable");
                 }
 
             }
@@ -704,7 +705,25 @@ namespace WindowsFormsApplication2
 
         Boolean checkwindowsFeatureInstallable()
         {
-            return false;
+            textBox.Text = "";
+            var l = 0;
+            string[] stringarray = File.ReadAllLines(createWinFeaturesText(filelocation));
+            foreach (string s in stringarray)
+            {
+                if (s.Contains("Windows-Server-Backup") && !s.Contains("X"))
+                {
+                    textBox.AppendText(Environment.NewLine + s);
+                    l = l + 1;
+                }
+            }
+            if (l >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
