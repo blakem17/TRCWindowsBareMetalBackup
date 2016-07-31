@@ -542,7 +542,8 @@ namespace WindowsFormsApplication2
             var scriptText = File.ReadAllText(scriptlocation);
             if (checkwindowsFeatureInsatlled() == true)
             {
-                PowerShell powerShell = PowerShell.Create();
+                textBox.AppendText(Environment.NewLine + "Server Backup Installed");
+/*                PowerShell powerShell = PowerShell.Create();
                 //            textBox.Text += (scriptText + "\r\n");
 
                 powerShell.AddCommand("Import-Module").AddArgument("ServerManager");
@@ -567,7 +568,7 @@ namespace WindowsFormsApplication2
                     {
                         textBox.Text = er.Exception.Message;
                     }
-                }
+                }*/
             }
             else
             {
@@ -667,21 +668,31 @@ namespace WindowsFormsApplication2
         Boolean checkwindowsFeatureInsatlled()
         {
             PowerShell powerShell = PowerShell.Create();
-            string tempfilelocationUnformatted =  installDirectory + "temp.txt";
+            string tempfilelocationUnformatted = installDirectory + "temp.txt";
             string tempfilelocation = "\"" + tempfilelocationUnformatted.Replace(@"\", @"\\") + "\"";
-            textBox.Text = tempfilelocation;
-            string powershellScript = "import-module servermanager | Get-WindowsFeature > "+ tempfilelocation;
+            string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup > " + tempfilelocation;
             powerShell.AddScript(powershellScript);
             powerShell.Invoke();
+            textBox.Text = "";
             var l = 0;
+            string[] stringarray = File.ReadAllLines(tempfilelocationUnformatted);
+            foreach (string s in stringarray)
+            {
+                if (s.Contains("Windows-Server-Backup") && s.Contains("X"))
+                {
+                    textBox.AppendText(Environment.NewLine + s);
+                    l = l + 1;
+                }
+            }
             if (l >= 1)
             {
-                return false;
+                return true;
             }
             else
             {
                 return false;
             }
+
         }
 
     }
