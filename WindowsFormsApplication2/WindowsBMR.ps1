@@ -33,11 +33,3 @@ if($pathType -like "Volume"){$BackupLocation = New-WBBackupTarget -Volume "$loca
 if($pathType -like "Volume"){$BackupLocation = New-WBBackupTarget -Volumepath "$location"}
 Add-WBBackupTarget -Policy $backupPolicy -Target $BackupLocation
 ###############################################################################################
-start-transcript -path $logFile 				####Start Backup Log
-Start-WBBackup �Policy $backupPolicy			####startBackup
-stop-transcript									#####End Backup Log
-
-$log = Get-Content $logFile | out-string
-
-if($log -contains $sucStr){send-mailmessage -to $emailTo -subject "Backup on $CompanyName $CompName was Successfull" -from $emailFrom -smtpserver $smtpServer -body "$log"}
-if($log -notcontains $sucStr){send-mailmessage -to $emailTo -subject "Backup on $CompanyName $CompName Failed" -from $emailFrom -smtpserver $smtpServer -body "$log"}

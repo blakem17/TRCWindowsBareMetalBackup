@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,6 +15,7 @@ using System.Reflection;
 using Microsoft.Win32;
 using RealClassUpdater.Properties;
 using System.Management.Automation;
+using System.Management.Automation.Runspaces;
 
 
 namespace WindowsFormsApplication2
@@ -529,6 +531,30 @@ namespace WindowsFormsApplication2
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            var scriptlocation = installDirectory + "WindowsBMR.ps1";
+            var scriptText = File.ReadAllText(scriptlocation);
+            PowerShell powerShell = PowerShell.Create();
+//            textBox.Text += (scriptText + "\r\n");
+
+            powerShell.AddScript(scriptText);
+            PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
+            outputCollection.DataAdded += outputCollection_DataAdded;
+            var results = powerShell.Invoke();
+
+            foreach (var item in results)
+            {
+                string itemstring = item.ToString();
+                textBox.Text += (textBox.Text + "\r\n" + itemstring );
+            }
+
+            if (powerShell.Streams.Error.Count > 0)
+            {
+                var error = powerShell.Streams.Error.ReadAll() as Collection<ErrorRecord>;
+                foreach (ErrorRecord er in error)
+                {
+                    textBox.Text = er.Exception.Message;
+                }
+            }
 
         }
 
@@ -538,5 +564,12 @@ namespace WindowsFormsApplication2
             emailFTB.Enabled = (emailCheck.CheckState == CheckState.Checked);
             smtpTB.Enabled = (emailCheck.CheckState == CheckState.Checked);
         }
+
+        void outputCollection_DataAdded(object sender, DataAddedEventArgs e)
+        {
+            // do something when an object is written to the output stream
+            textBox.Text += ("Object added to output.");
+        }
     }
+
 }
