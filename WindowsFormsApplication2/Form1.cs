@@ -34,7 +34,9 @@ namespace WindowsFormsApplication2
         private string lgFlIdent = "$logFile =";
         private string locationIdent = "$location =";
         private string[] setArr = new string[8];
-        string installDirectory = Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
+
+        string installDirectory =
+            Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
 
         public Form1()
         {
@@ -48,266 +50,269 @@ namespace WindowsFormsApplication2
             setArr[6] = pthTpIdent;
             setArr[7] = smtpIdent;
             var scriptlocation = installDirectory + "WindowsBMR.ps1";
-                if (!File.Exists(scriptlocation))
+            if (!File.Exists(scriptlocation))
+            {
+                byte[] myfile = Resources.WindowsBMR;
+                string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
+                File.WriteAllText(scriptlocation, myfileStr);
+                string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
+                string joinded = String.Join(Environment.NewLine, fileTextArr1);
+                textBox.Text = joinded;
+                foreach (string s in fileTextArr1)
                 {
-                    byte[] myfile = Resources.WindowsBMR;
-                    string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
-                    File.WriteAllText(scriptlocation, myfileStr);
-                    string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
-                    string joinded = String.Join(Environment.NewLine, fileTextArr1);
-                    textBox.Text = joinded;
-                    foreach (string s in fileTextArr1)
+                    if (s.Contains(compIdent))
                     {
-                        if (s.Contains(compIdent))
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
                         {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
 
-                                string u = item.ToString().Replace("\"", "");
-                                companyTB.Text = u;
+                            string u = item.ToString().Replace("\"", "");
+                            companyTB.Text = u;
 
-                            }
                         }
-                        if (s.Contains(emToIdent))
+                    }
+                    if (s.Contains(emToIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
                         {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
 
-                                string u = item.ToString().Replace("\"", "");
-                                emailToTB.Text = u;
+                            string u = item.ToString().Replace("\"", "");
+                            emailToTB.Text = u;
                             if (emailToTB.Text.Length > 0)
                             {
                                 emailCheck.Checked = true;
                             }
                         }
-                        }
-                        if (s.Contains(emFrIdent))
+                    }
+                    if (s.Contains(emFrIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
                         {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
 
-                                string u = item.ToString().Replace("\"", "");
-                                emailFTB.Text = u;
+                            string u = item.ToString().Replace("\"", "");
+                            emailFTB.Text = u;
                             if (emailFTB.Text.Length > 0)
                             {
                                 emailCheck.Checked = true;
                             }
                         }
-                        }
-                        if (s.Contains(smtpIdent))
+                    }
+                    if (s.Contains(smtpIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
                         {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
 
-                                string u = item.ToString().Replace("\"", "");
-                                smtpTB.Text = u;
+                            string u = item.ToString().Replace("\"", "");
+                            smtpTB.Text = u;
                             if (smtpTB.Text.Length > 0)
                             {
                                 emailCheck.Checked = true;
                             }
                         }
-                        }
-                        if (s.Contains(pthTpIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                pathTYCB.Text = u;
-
-                            }
-                        }
-                        if (s.Contains(credIdent) && s.Length > 13)
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                credTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(dirIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                directoryTB.Text = u;
-
-                            };
-                        }
-                        if (s.Contains(lgFlIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                logTB.Text = u;
-
-                            }
-                        }
-                        if (s.Contains(locationIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                locationTB.Text = u;
-
-                            }
-                        }
-
                     }
-                }
-                else
-                {
-                    string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
-                    string joinded = String.Join(Environment.NewLine, fileTextArr1);
-                    textBox.Text = joinded;
-                    foreach (string s in fileTextArr1)
+                    if (s.Contains(pthTpIdent))
                     {
-                        if (s.Contains(compIdent))
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
                         {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
 
-                                string u = item.ToString().Replace("\"", "");
-                                companyTB.Text = u;
+                            string u = item.ToString().Replace("\"", "");
+                            pathTYCB.Text = u;
 
-                            }
                         }
-                        if (s.Contains(emToIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-          
-                                string u = item.ToString().Replace("\"", "");
-                                emailToTB.Text = u;
-                                if (emailToTB.Text.Length > 0)
-                                {
-                                emailCheck.Checked = true;
-                            }
-
-                            }
-                        }
-                        if (s.Contains(emFrIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                emailFTB.Text = u;
-                                if (emailFTB.Text.Length > 0)
-                                {
-                                emailCheck.Checked = true;
-                            }
-
-                            }
-                        }
-                        if (s.Contains(smtpIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                smtpTB.Text = u;
-                                if (smtpTB.Text.Length > 0)
-                                {
-                                emailCheck.Checked = true;
-                            }
-
-                            }
-                        }
-                        if (s.Contains(pthTpIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                pathTYCB.Text = u;
-
-                            }
-                        }
-                        if (s.Contains(credIdent) && s.Length > 13)
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                credTB.Text = u;
-                            }
-                        }
-                        if (s.Contains(dirIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                directoryTB.Text = u;
-
-                            };
-                        }
-                        if (s.Contains(lgFlIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                logTB.Text = u;
-
-                            }
-                        }
-                        if (s.Contains(locationIdent))
-                        {
-                            var reg = new Regex("\".*?\"");
-                            var matches = reg.Matches(s);
-                            foreach (var item in matches)
-                            {
-
-                                string u = item.ToString().Replace("\"", "");
-                                locationTB.Text = u;
-
-                            }
-                        }
-
                     }
+                    if (s.Contains(credIdent) && s.Length > 13)
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            credTB.Text = u;
+                        }
+                    }
+                    if (s.Contains(dirIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            directoryTB.Text = u;
+
+                        }
+                        ;
+                    }
+                    if (s.Contains(lgFlIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            logTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(locationIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            locationTB.Text = u;
+
+                        }
+                    }
+
                 }
+            }
+            else
+            {
+                string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
+                string joinded = String.Join(Environment.NewLine, fileTextArr1);
+                textBox.Text = joinded;
+                foreach (string s in fileTextArr1)
+                {
+                    if (s.Contains(compIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            companyTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(emToIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            emailToTB.Text = u;
+                            if (emailToTB.Text.Length > 0)
+                            {
+                                emailCheck.Checked = true;
+                            }
+
+                        }
+                    }
+                    if (s.Contains(emFrIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            emailFTB.Text = u;
+                            if (emailFTB.Text.Length > 0)
+                            {
+                                emailCheck.Checked = true;
+                            }
+
+                        }
+                    }
+                    if (s.Contains(smtpIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            smtpTB.Text = u;
+                            if (smtpTB.Text.Length > 0)
+                            {
+                                emailCheck.Checked = true;
+                            }
+
+                        }
+                    }
+                    if (s.Contains(pthTpIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            pathTYCB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(credIdent) && s.Length > 13)
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            credTB.Text = u;
+                        }
+                    }
+                    if (s.Contains(dirIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            directoryTB.Text = u;
+
+                        }
+                        ;
+                    }
+                    if (s.Contains(lgFlIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            logTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(locationIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            locationTB.Text = u;
+
+                        }
+                    }
+
+                }
+            }
 
         }
+
         private void seldirectoryBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -322,6 +327,7 @@ namespace WindowsFormsApplication2
         {
 
         }
+
         static string ConvertStringArrayToString(string[] array)
         {
             //
@@ -492,7 +498,8 @@ namespace WindowsFormsApplication2
                     }
 
                 }
-                if (companyUpdate + credupdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate + smtpupdate + locationupdate + pathtypeupdate > 0 && !textBox.Text.Equals(noSelStr))
+                if (companyUpdate + credupdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate +
+                    smtpupdate + locationupdate + pathtypeupdate > 0 && !textBox.Text.Equals(noSelStr))
                 {
                     File.WriteAllText(scriptlocation, textBox.Text);
                 }
@@ -507,7 +514,7 @@ namespace WindowsFormsApplication2
                 if (c is TextBox)
                 {
                     string cname = c.Name;
-                    
+
                 }
             }
         }
@@ -516,7 +523,7 @@ namespace WindowsFormsApplication2
 
         private void locationButton_Click(object sender, EventArgs e)
         {
-           FolderBrowserDialog fdb = new FolderBrowserDialog();
+            FolderBrowserDialog fdb = new FolderBrowserDialog();
             fdb.RootFolder = Environment.SpecialFolder.MyComputer;
             if (fdb.ShowDialog() == DialogResult.OK)
             {
@@ -564,9 +571,9 @@ namespace WindowsFormsApplication2
             }
             else
             {
-                textBox.Text = "Winddows Backup Feature Not installed";
+                
             }
-            
+
 
         }
 
@@ -582,24 +589,100 @@ namespace WindowsFormsApplication2
             // do something when an object is written to the output stream
             textBox.Text += ("Object added to output.");
         }
+        private string RunScript(string scriptText)
+        {
+            // create Powershell runspace 
+            Runspace runspace = RunspaceFactory.CreateRunspace();
+
+            // open it 
+            runspace.Open();
+
+            // create a pipeline and feed it the script text 
+            Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript(scriptText);
+
+            // add an extra command to transform the script output objects into nicely formatted strings 
+            // remove this line to get the actual objects that the script returns. For example, the script 
+            // "Get-Process" returns a collection of System.Diagnostics.Process instances. 
+            pipeline.Commands.Add("Out-String");
+
+            // execute the script 
+            Collection<PSObject> results = pipeline.Invoke();
+
+            // close the runspace 
+            runspace.Close();
+
+            // convert the script result into a single string 
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (PSObject obj in results)
+            {
+                stringBuilder.AppendLine(obj.ToString());
+            }
+
+            // return the results of the script that has 
+            // now been converted to text 
+            return stringBuilder.ToString();
+        }
+        private string LoadScript(string filename)
+        {
+            try
+            {
+                // Create an instance of StreamReader to read from our file. 
+                // The using statement also closes the StreamReader. 
+                using (StreamReader sr = new StreamReader(filename))
+                {
+
+                    // use a string builder to get all our lines from the file 
+                    StringBuilder fileContents = new StringBuilder();
+
+                    // string to hold the current line 
+                    string curLine;
+
+                    // loop through our file and read each line into our 
+                    // stringbuilder as we go along 
+                    while ((curLine = sr.ReadLine()) != null)
+                    {
+                        // read each line and MAKE SURE YOU ADD BACK THE 
+                        // LINEFEED THAT IT THE ReadLine() METHOD STRIPS OFF 
+                        fileContents.Append(curLine + "\n");
+                    }
+
+                    // call RunScript and pass in our file contents 
+                    // converted to a string 
+                    return fileContents.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong. 
+                string errorText = "The file could not be read:";
+                errorText += e.Message + "\n";
+                return errorText;
+            }
+
+        }
+
+
 
         Boolean checkwindowsFeatureInsatlled()
         {
             PowerShell powerShell = PowerShell.Create();
-            powerShell.AddCommand("Get-WindowsFeature").AddArgument("Windows-Server-Backup");
-            PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
-            outputCollection.DataAdded += outputCollection_DataAdded;
-            var results = powerShell.Invoke();
-            if (results.ToString().Contains("Installed"))
+            string tempfilelocationUnformatted =  installDirectory + "temp.txt";
+            string tempfilelocation = "\"" + tempfilelocationUnformatted.Replace(@"\", @"\\") + "\"";
+            textBox.Text = tempfilelocation;
+            string powershellScript = "import-module servermanager | Get-WindowsFeature > "+ tempfilelocation;
+            powerShell.AddScript(powershellScript);
+            powerShell.Invoke();
+            var l = 0;
+            if (l >= 1)
             {
-                return true;
+                return false;
             }
             else
             {
                 return false;
             }
-
         }
-    }
 
+    }
 }
