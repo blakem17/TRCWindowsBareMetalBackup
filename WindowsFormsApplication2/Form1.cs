@@ -572,7 +572,10 @@ namespace WindowsFormsApplication2
             }
             else
             {
-                
+                if (checkwindowsFeatureInstallable() == true)
+                {
+                }
+
             }
 
 
@@ -664,8 +667,7 @@ namespace WindowsFormsApplication2
         }
 
 
-
-        Boolean checkwindowsFeatureInsatlled()
+        private string createWinFeaturesText(string filelocation)
         {
             PowerShell powerShell = PowerShell.Create();
             string tempfilelocationUnformatted = installDirectory + "temp.txt";
@@ -673,9 +675,14 @@ namespace WindowsFormsApplication2
             string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup > " + tempfilelocation;
             powerShell.AddScript(powershellScript);
             powerShell.Invoke();
+            return filelocation = tempfilelocationUnformatted;
+        }
+
+        Boolean checkwindowsFeatureInsatlled()
+        {
             textBox.Text = "";
             var l = 0;
-            string[] stringarray = File.ReadAllLines(tempfilelocationUnformatted);
+            string[] stringarray = File.ReadAllLines(createWinFeaturesText(filelocation));
             foreach (string s in stringarray)
             {
                 if (s.Contains("Windows-Server-Backup") && s.Contains("X"))
@@ -695,5 +702,9 @@ namespace WindowsFormsApplication2
 
         }
 
+        Boolean checkwindowsFeatureInstallable()
+        {
+            return false;
+        }
     }
 }
