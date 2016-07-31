@@ -575,6 +575,10 @@ namespace WindowsFormsApplication2
                 if (checkwindowsFeatureInstallable() == true)
                 {
                     textBox.AppendText(Environment.NewLine + "Server Backup Installable");
+                    if (InstalledWindowsBackupFeatures()== true)
+                    {
+                        textBox.AppendText(Environment.NewLine + "Server Backup Installed");
+                    }
                 }
 
             }
@@ -724,6 +728,26 @@ namespace WindowsFormsApplication2
             {
                 return false;
             }
+        }
+
+        Boolean InstalledWindowsBackupFeatures()
+        {
+            string tempfilelocationUnformatted = installDirectory + "temp.txt";
+            string tempfilelocation = "\"" + tempfilelocationUnformatted.Replace(@"\", @"\\") + "\"";
+
+            InitialSessionState iss = InitialSessionState.CreateDefault();
+            iss.ImportPSModule(new string[] { "ServerManager" });
+            Runspace powerShellRunspace = RunspaceFactory.CreateRunspace(iss);
+            powerShellRunspace.Open();
+            using (PowerShell powershell = PowerShell.Create())
+            {
+                powershell.Runspace = powerShellRunspace;
+                powershell.AddCommand("add-WindowsFeature");
+                powershell.AddArgument("Windows-Server-Backup");
+                powershell.Invoke();
+            }
+            powerShellRunspace.Close();
+            return true;
         }
     }
 }
