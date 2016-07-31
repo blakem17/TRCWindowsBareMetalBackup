@@ -328,19 +328,6 @@ namespace WindowsFormsApplication2
 
         }
 
-        static string ConvertStringArrayToString(string[] array)
-        {
-            //
-            // Concatenate all the elements into a StringBuilder.
-            //
-            StringBuilder builder = new StringBuilder();
-            foreach (string value in array)
-            {
-                builder.Append(value);
-                builder.Append('.');
-            }
-            return builder.ToString();
-        }
 
         private void pathTYCB_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -543,7 +530,7 @@ namespace WindowsFormsApplication2
             if (checkwindowsFeatureInsatlled() == true)
             {
                 textBox.AppendText(Environment.NewLine + "Server Backup Installed");
-/*                PowerShell powerShell = PowerShell.Create();
+                PowerShell powerShell = PowerShell.Create();
                 //            textBox.Text += (scriptText + "\r\n");
 
                 powerShell.AddCommand("Import-Module").AddArgument("ServerManager");
@@ -568,7 +555,7 @@ namespace WindowsFormsApplication2
                     {
                         textBox.Text = er.Exception.Message;
                     }
-                }*/
+                }
             }
             else
             {
@@ -732,9 +719,6 @@ namespace WindowsFormsApplication2
 
         Boolean InstalledWindowsBackupFeatures()
         {
-            string tempfilelocationUnformatted = installDirectory + "temp.txt";
-            string tempfilelocation = "\"" + tempfilelocationUnformatted.Replace(@"\", @"\\") + "\"";
-
             InitialSessionState iss = InitialSessionState.CreateDefault();
             iss.ImportPSModule(new string[] { "ServerManager" });
             Runspace powerShellRunspace = RunspaceFactory.CreateRunspace(iss);
