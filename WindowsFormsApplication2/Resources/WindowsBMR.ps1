@@ -20,10 +20,6 @@ $sucStr = "The backup operation completed"
 ####################################### Create Directory if it Does not exist######################
 If ($dirExists -eq $false) {New-Item -Path $directory -type directory}
 If ($fileExists -eq $false) {New-Item -Path $logfile -type file}
-
-################################ Install Backup If not Installed##################################
-Import-module ServerManager
-Add-WindowsFeature Windows-Server-Backup
 #########################Create Backup Job#########################################
 $backupPolicy = New-WBPolicy
 Add-WBBareMetalRecovery -Policy $backupPolicy

@@ -536,6 +536,8 @@ namespace WindowsFormsApplication2
             PowerShell powerShell = PowerShell.Create();
 //            textBox.Text += (scriptText + "\r\n");
 
+            powerShell.AddCommand("Import-Module").AddArgument("ServerManager");
+            powerShell.AddCommand("Add-WindowsFeature").AddArgument("Windows-Server-Backup");
             powerShell.AddScript(scriptText);
             PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
             outputCollection.DataAdded += outputCollection_DataAdded;
