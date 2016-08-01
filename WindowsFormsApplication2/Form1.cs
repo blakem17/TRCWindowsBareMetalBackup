@@ -667,41 +667,37 @@ namespace WindowsFormsApplication2
 
         void createBackup()
         {
-            string powershellScript1 = " $backupPolicy = New-WBPolicy";
-            string powershellScript2 = " Add-WBBareMetalRecovery -Policy $backupPolicy";
-            string powershellScript3 = " $location = " + "\"" + locationTB.Text + "\"";
             if (!File.Exists(logTB.Text))
             {
                 File.Create(logTB.Text);
             }
-            string powershellScript7 = " Start-WBBackup Policy $backupPolicy";
-            string collatedPSScript1 = powershellScript1 + powershellScript2 + powershellScript3;
-            var powershellScript5 = "";
+            var BackupTarget = "";
             string selectedItem = pathTYCB.SelectedItem.ToString();
             if (selectedItem.Contains("NETWORKPATH"))
             {
-                powershellScript5 = " $BackupLocation = New-WBBackupTarget -NetworkPath \"$location\"";
+                BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
 
             }
             if (selectedItem.Contains("DISK"))
             {
-                powershellScript5 = " $BackupLocation = New-WBBackupTarget -Disk \"$location\"";
+                BackupTarget = " $BackupTarget = New-WBBackupTarget -Disk \"$location\"";
             }
             if (selectedItem.Contains("VOLUME "))
             {
-                powershellScript5 = " $BackupLocation = New-WBBackupTarget -Volume \"$location\"";
+                BackupTarget = " $BackupTarget = New-WBBackupTarget -Volume \"$location\"";
             }
             if (selectedItem.Contains("VOLUMEPATH"))
             {
-                powershellScript5 = " $BackupLocation = New-WBBackupTarget -Volumepath \"$location\"";
+                BackupTarget = " $BackupTarget = New-WBBackupTarget -Volumepath \"$location\"";
             }
             PowerShell psinstace = PowerShell.Create();
             psinstace.AddScript("Import-Module -Name ServerManager");
-            psinstace.AddScript(powershellScript1);
-            psinstace.AddScript(powershellScript2);
-            psinstace.AddScript(powershellScript3);
-            psinstace.AddScript(powershellScript5);
-            psinstace.AddScript(powershellScript7);
+            psinstace.AddScript("$backupPolicy = New-WBPolicy");
+            psinstace.AddScript("Add-WBBareMetalRecovery -Policy $backupPolicy");
+            psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
+            psinstace.AddScript(BackupTarget);
+            psinstace.AddScript("Add-WBBackupTarget $BackupTarget -Policy $backupPolicy");
+            psinstace.AddScript("Start-WBBackup -Policy $backupPolicy");
             var results = psinstace.Invoke();
             Console.WriteLine(psinstace.Streams.Error.Count().ToString() + "Error Counts");
             foreach (var errorRecord in psinstace.Streams.Error)
