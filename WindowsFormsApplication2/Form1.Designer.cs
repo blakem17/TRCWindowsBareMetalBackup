@@ -31,6 +31,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.emailCheck = new System.Windows.Forms.CheckBox();
             this.startButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.locationButton = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.credLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
-            this.emailCheck = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,17 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // emailCheck
+            // 
+            this.emailCheck.AutoSize = true;
+            this.emailCheck.Location = new System.Drawing.Point(702, 181);
+            this.emailCheck.Name = "emailCheck";
+            this.emailCheck.Size = new System.Drawing.Size(136, 17);
+            this.emailCheck.TabIndex = 26;
+            this.emailCheck.Text = "Enable Eamil Reporting";
+            this.emailCheck.UseVisualStyleBackColor = true;
+            this.emailCheck.CheckedChanged += new System.EventHandler(this.emailCheck_CheckedChanged);
+            // 
             // startButton
             // 
             this.startButton.Location = new System.Drawing.Point(907, 234);
@@ -150,6 +161,7 @@
             this.locationTB.Name = "locationTB";
             this.locationTB.Size = new System.Drawing.Size(163, 20);
             this.locationTB.TabIndex = 23;
+            this.locationTB.TextChanged += new System.EventHandler(this.locationTB_TextChanged);
             // 
             // saveButtton
             // 
@@ -170,7 +182,7 @@
             this.pathTYCB.Items.AddRange(new object[] {
             "DISK",
             "NETWORKPATH",
-            "VOLUME",
+            "VOLUME ",
             "VOLUMEPATH"});
             this.pathTYCB.Location = new System.Drawing.Point(702, 314);
             this.pathTYCB.MinimumSize = new System.Drawing.Size(10, 0);
@@ -320,17 +332,6 @@
             this.companyLB.Size = new System.Drawing.Size(51, 13);
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
-            // 
-            // emailCheck
-            // 
-            this.emailCheck.AutoSize = true;
-            this.emailCheck.Location = new System.Drawing.Point(702, 181);
-            this.emailCheck.Name = "emailCheck";
-            this.emailCheck.Size = new System.Drawing.Size(136, 17);
-            this.emailCheck.TabIndex = 26;
-            this.emailCheck.Text = "Enable Eamil Reporting";
-            this.emailCheck.UseVisualStyleBackColor = true;
-            this.emailCheck.CheckedChanged += new System.EventHandler(this.emailCheck_CheckedChanged);
             // 
             // Form1
             // 

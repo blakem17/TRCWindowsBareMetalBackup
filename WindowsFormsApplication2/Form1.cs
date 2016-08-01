@@ -16,6 +16,8 @@ using Microsoft.Win32;
 using RealClassUpdater.Properties;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Microsoft.PowerShell.Commands;
+using PowerShell = System.Management.Automation.PowerShell;
 
 
 namespace WindowsFormsApplication2
@@ -529,7 +531,9 @@ namespace WindowsFormsApplication2
             var scriptText = File.ReadAllText(scriptlocation);
             if (checkwindowsFeatureInsatlled() == true)
             {
-                textBox.AppendText(Environment.NewLine + "Server Backup Installed");
+                createBackup();
+
+/*                textBox.AppendText(Environment.NewLine + "Server Backup Installed");
                 PowerShell powerShell = PowerShell.Create();
                 //            textBox.Text += (scriptText + "\r\n");
 
@@ -555,7 +559,7 @@ namespace WindowsFormsApplication2
                     {
                         textBox.Text = er.Exception.Message;
                     }
-                }
+                }*/
             }
             else
             {
@@ -659,6 +663,69 @@ namespace WindowsFormsApplication2
             }
             powerShellRunspace.Close();
             return true;
+        }
+
+        void createBackup()
+        {
+            string powershellScript1 = " $backupPolicy = New - WBPolicy";
+            string powershellScript2 = " Add-WBBareMetalRecovery -Policy $backupPolicy";
+            string powershellScript3 = " $location = " + locationTB.Text;
+            string powershellScript4 = " $logfile = " + logTB.Text;
+            if (!File.Exists(logTB.Text))
+            {
+                File.Create(logTB.Text);
+            }
+            string powershellScript6 = " start-transcript -path $logFile";
+            string powershellScript7 = " Start-WBBackup Policy $backupPolicy";
+            string powershellScript8 = " stop-transcript";
+            string collatedPSScript1 = powershellScript1 + powershellScript2 + powershellScript3 + powershellScript4;
+            var collatedPSScript2 = "";
+            string selectedItem = pathTYCB.SelectedItem.ToString();
+            if (selectedItem.Contains("NETWORKPATH"))
+            {
+                string powershellScript5 = " $BackupLocation = New-WBBackupTarget -NetworkPath \"$location\"";
+                collatedPSScript2 = collatedPSScript1 + powershellScript5;
+
+            }
+            if (selectedItem.Contains("DISK"))
+            {
+                string powershellScript5 = " $BackupLocation = New-WBBackupTarget -Disk \"$location\"";
+                collatedPSScript2 = collatedPSScript1 + powershellScript5;
+            }
+            if (selectedItem.Contains("VOLUME "))
+            {
+                string powershellScript5 = " $BackupLocation = New-WBBackupTarget -Volume \"$location\"";
+                collatedPSScript2 = collatedPSScript1 + powershellScript5;
+            }
+            if (selectedItem.Contains("VOLUMEPATH"))
+            {
+                string powershellScript5 = " $BackupLocation = New-WBBackupTarget -Volumepath \"$location\"";
+                collatedPSScript2 = collatedPSScript1 + powershellScript5;
+            }
+            string collatedPssCript3 = powershellScript6 + collatedPSScript2 + powershellScript7 + powershellScript8;
+            textBox.AppendText(Environment.NewLine + collatedPssCript3);
+            using (PowerShell powershell = PowerShell.Create().AddCommand("get-process"))
+            {
+                textBox.AppendText(Environment.NewLine + "Process              HandleCount");
+                textBox.AppendText(Environment.NewLine + "--------------------------------");
+
+                // Invoke the command synchronously and display the  
+                // ProcessName and HandleCount properties of the 
+                // objects that are returned.
+                foreach (PSObject result in powershell.Invoke())
+                {
+                    Console.WriteLine(
+                                "{0,-20} {1}",
+                                result.Members["ProcessName"].Value,
+                                result.Members["HandleCount"].Value);
+                }
+            }
+            return;
+        }
+
+        private void locationTB_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
