@@ -133,17 +133,6 @@ namespace WindowsFormsApplication2
 
                         }
                     }
-                    if (s.Contains(credIdent) && s.Length > 13)
-                    {
-                        var reg = new Regex("\".*?\"");
-                        var matches = reg.Matches(s);
-                        foreach (var item in matches)
-                        {
-
-                            string u = item.ToString().Replace("\"", "");
-                            userTB.Text = u;
-                        }
-                    }
                     if (s.Contains(dirIdent))
                     {
                         var reg = new Regex("\".*?\"");
@@ -287,17 +276,6 @@ namespace WindowsFormsApplication2
 
                         }
                     }
-                    if (s.Contains(credIdent) && s.Length > 13)
-                    {
-                        var reg = new Regex("\".*?\"");
-                        var matches = reg.Matches(s);
-                        foreach (var item in matches)
-                        {
-
-                            string u = item.ToString().Replace("\"", "");
-                            userTB.Text = u;
-                        }
-                    }
                     if (s.Contains(dirIdent))
                     {
                         var reg = new Regex("\".*?\"");
@@ -389,7 +367,6 @@ namespace WindowsFormsApplication2
         private void saveButtton_Click(object sender, EventArgs e)
         {
             string uCompany = companyTB.Text;
-            string uCred = userTB.Text;
             string uDirectory = directoryTB.Text;
             string uEmailTo = emailToTB.Text;
             string uEmailFr = emailFTB.Text;
@@ -400,7 +377,6 @@ namespace WindowsFormsApplication2
             string uusername = userTB.Text;
             string upassword = passwordTB.Text;
             int companyUpdate = 0;
-            int credupdate = 0;
             int directoryupdate = 0;
             int emailtoupdate = 0;
             int emailfrupdate = 0;
@@ -423,18 +399,6 @@ namespace WindowsFormsApplication2
                         }
                         companyUpdate ++;
                     }
-                }
-                if (credupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(credIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, credIdent + " \"" + uCred + "\"");
-                        }
-                        credupdate++;
-                    }
-
                 }
                 if (directoryupdate == 0)
                 {
