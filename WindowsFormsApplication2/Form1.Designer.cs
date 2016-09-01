@@ -41,7 +41,7 @@
             this.pathTYCB = new System.Windows.Forms.ComboBox();
             this.smtpLB = new System.Windows.Forms.Label();
             this.pathTyLB = new System.Windows.Forms.Label();
-            this.credTB = new System.Windows.Forms.TextBox();
+            this.userTB = new System.Windows.Forms.TextBox();
             this.logLB = new System.Windows.Forms.Label();
             this.directoryTB = new System.Windows.Forms.TextBox();
             this.emailFRLB = new System.Windows.Forms.Label();
@@ -50,9 +50,11 @@
             this.emailFTB = new System.Windows.Forms.TextBox();
             this.directoryLB = new System.Windows.Forms.Label();
             this.logTB = new System.Windows.Forms.TextBox();
-            this.credLB = new System.Windows.Forms.Label();
+            this.userLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
+            this.passwordTB = new System.Windows.Forms.TextBox();
+            this.passwordLB = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +74,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.passwordLB);
+            this.tabPage1.Controls.Add(this.passwordTB);
             this.tabPage1.Controls.Add(this.emailCheck);
             this.tabPage1.Controls.Add(this.startButton);
             this.tabPage1.Controls.Add(this.textBox);
@@ -82,7 +86,7 @@
             this.tabPage1.Controls.Add(this.pathTYCB);
             this.tabPage1.Controls.Add(this.smtpLB);
             this.tabPage1.Controls.Add(this.pathTyLB);
-            this.tabPage1.Controls.Add(this.credTB);
+            this.tabPage1.Controls.Add(this.userTB);
             this.tabPage1.Controls.Add(this.logLB);
             this.tabPage1.Controls.Add(this.directoryTB);
             this.tabPage1.Controls.Add(this.emailFRLB);
@@ -91,7 +95,7 @@
             this.tabPage1.Controls.Add(this.emailFTB);
             this.tabPage1.Controls.Add(this.directoryLB);
             this.tabPage1.Controls.Add(this.logTB);
-            this.tabPage1.Controls.Add(this.credLB);
+            this.tabPage1.Controls.Add(this.userLB);
             this.tabPage1.Controls.Add(this.smtpTB);
             this.tabPage1.Controls.Add(this.companyLB);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -213,14 +217,14 @@
             this.pathTyLB.TabIndex = 19;
             this.pathTyLB.Text = "Path Type";
             // 
-            // credTB
+            // userTB
             // 
-            this.credTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.credTB.Location = new System.Drawing.Point(702, 289);
-            this.credTB.MinimumSize = new System.Drawing.Size(10, 10);
-            this.credTB.Name = "credTB";
-            this.credTB.Size = new System.Drawing.Size(161, 20);
-            this.credTB.TabIndex = 6;
+            this.userTB.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.userTB.Location = new System.Drawing.Point(702, 289);
+            this.userTB.MinimumSize = new System.Drawing.Size(10, 10);
+            this.userTB.Name = "userTB";
+            this.userTB.Size = new System.Drawing.Size(78, 20);
+            this.userTB.TabIndex = 6;
             // 
             // logLB
             // 
@@ -302,16 +306,16 @@
             this.logTB.Size = new System.Drawing.Size(161, 20);
             this.logTB.TabIndex = 11;
             // 
-            // credLB
+            // userLB
             // 
-            this.credLB.AutoSize = true;
-            this.credLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.credLB.Location = new System.Drawing.Point(866, 296);
-            this.credLB.MinimumSize = new System.Drawing.Size(10, 10);
-            this.credLB.Name = "credLB";
-            this.credLB.Size = new System.Drawing.Size(59, 13);
-            this.credLB.TabIndex = 14;
-            this.credLB.Text = "Credentials";
+            this.userLB.AutoSize = true;
+            this.userLB.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.userLB.Location = new System.Drawing.Point(786, 296);
+            this.userLB.MinimumSize = new System.Drawing.Size(10, 10);
+            this.userLB.Name = "userLB";
+            this.userLB.Size = new System.Drawing.Size(57, 13);
+            this.userLB.TabIndex = 14;
+            this.userLB.Text = "UserName";
             // 
             // smtpTB
             // 
@@ -332,6 +336,26 @@
             this.companyLB.Size = new System.Drawing.Size(51, 13);
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
+            // 
+            // passwordTB
+            // 
+            this.passwordTB.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.passwordTB.Location = new System.Drawing.Point(842, 289);
+            this.passwordTB.MinimumSize = new System.Drawing.Size(10, 10);
+            this.passwordTB.Name = "passwordTB";
+            this.passwordTB.Size = new System.Drawing.Size(78, 20);
+            this.passwordTB.TabIndex = 27;
+            // 
+            // passwordLB
+            // 
+            this.passwordLB.AutoSize = true;
+            this.passwordLB.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.passwordLB.Location = new System.Drawing.Point(925, 296);
+            this.passwordLB.MinimumSize = new System.Drawing.Size(10, 10);
+            this.passwordLB.Name = "passwordLB";
+            this.passwordLB.Size = new System.Drawing.Size(53, 13);
+            this.passwordLB.TabIndex = 28;
+            this.passwordLB.Text = "Password";
             // 
             // Form1
             // 
@@ -362,7 +386,7 @@
         private System.Windows.Forms.ComboBox pathTYCB;
         private System.Windows.Forms.Label smtpLB;
         private System.Windows.Forms.Label pathTyLB;
-        private System.Windows.Forms.TextBox credTB;
+        private System.Windows.Forms.TextBox userTB;
         private System.Windows.Forms.Label logLB;
         private System.Windows.Forms.TextBox directoryTB;
         private System.Windows.Forms.Label emailFRLB;
@@ -371,11 +395,13 @@
         private System.Windows.Forms.TextBox emailFTB;
         private System.Windows.Forms.Label directoryLB;
         private System.Windows.Forms.TextBox logTB;
-        private System.Windows.Forms.Label credLB;
+        private System.Windows.Forms.Label userLB;
         private System.Windows.Forms.TextBox smtpTB;
         private System.Windows.Forms.Label companyLB;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.CheckBox emailCheck;
+        private System.Windows.Forms.Label passwordLB;
+        private System.Windows.Forms.TextBox passwordTB;
     }
 }
 

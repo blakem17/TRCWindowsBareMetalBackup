@@ -139,7 +139,7 @@ namespace WindowsFormsApplication2
                         {
 
                             string u = item.ToString().Replace("\"", "");
-                            credTB.Text = u;
+                            userTB.Text = u;
                         }
                     }
                     if (s.Contains(dirIdent))
@@ -269,7 +269,7 @@ namespace WindowsFormsApplication2
                         {
 
                             string u = item.ToString().Replace("\"", "");
-                            credTB.Text = u;
+                            userTB.Text = u;
                         }
                     }
                     if (s.Contains(dirIdent))
@@ -339,7 +339,7 @@ namespace WindowsFormsApplication2
         private void saveButtton_Click(object sender, EventArgs e)
         {
             string uCompany = companyTB.Text;
-            string uCred = credTB.Text;
+            string uCred = userTB.Text;
             string uDirectory = directoryTB.Text;
             string uEmailTo = emailToTB.Text;
             string uEmailFr = emailFTB.Text;
@@ -676,7 +676,6 @@ namespace WindowsFormsApplication2
             if (selectedItem.Contains("NETWORKPATH"))
             {
                 BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
-
             }
             if (selectedItem.Contains("DISK"))
             {
