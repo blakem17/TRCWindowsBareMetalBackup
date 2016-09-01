@@ -35,6 +35,8 @@ namespace WindowsFormsApplication2
         private string dirIdent = "$directory =";
         private string lgFlIdent = "$logFile =";
         private string locationIdent = "$location =";
+        private string passwordIdent = "$password =";
+        private string usernameIdent = "$username =";
         private string[] setArr = new string[8];
 
         string installDirectory =
@@ -179,6 +181,30 @@ namespace WindowsFormsApplication2
 
                         }
                     }
+                    if (s.Contains(usernameIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            userTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(passwordIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            passwordTB.Text = u;
+
+                        }
+                    }
 
                 }
             }
@@ -309,6 +335,30 @@ namespace WindowsFormsApplication2
 
                         }
                     }
+                    if (s.Contains(usernameIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            userTB.Text = u;
+
+                        }
+                    }
+                    if (s.Contains(passwordIdent))
+                    {
+                        var reg = new Regex("\".*?\"");
+                        var matches = reg.Matches(s);
+                        foreach (var item in matches)
+                        {
+
+                            string u = item.ToString().Replace("\"", "");
+                            passwordTB.Text = u;
+
+                        }
+                    }
 
                 }
             }
@@ -347,6 +397,8 @@ namespace WindowsFormsApplication2
             string uSmtp = smtpTB.Text;
             string ulocation = locationTB.Text;
             string upathtype = pathTYCB.Text;
+            string uusername = userTB.Text;
+            string upassword = passwordTB.Text;
             int companyUpdate = 0;
             int credupdate = 0;
             int directoryupdate = 0;
@@ -356,6 +408,8 @@ namespace WindowsFormsApplication2
             int smtpupdate = 0;
             int locationupdate = 0;
             int pathtypeupdate = 0;
+            int usernameupdate = 0;
+            int passwordupdate = 0;
             string scriptlocation = installDirectory + "WindowsBMR.ps1";
             if (File.Exists(scriptlocation))
             {
@@ -487,8 +541,32 @@ namespace WindowsFormsApplication2
                     }
 
                 }
+                if (usernameupdate == 0)
+                {
+                    foreach (var line in textBox.Lines)
+                    {
+                        if (line.Contains(usernameIdent))
+                        {
+                            textBox.Text = textBox.Text.Replace(line, usernameIdent + " \"" + uusername + "\"");
+                        }
+                        usernameupdate++;
+                    }
+
+                }
+                if (passwordupdate == 0)
+                {
+                    foreach (var line in textBox.Lines)
+                    {
+                        if (line.Contains(passwordIdent))
+                        {
+                            textBox.Text = textBox.Text.Replace(line, passwordIdent + " \"" + upassword + "\"");
+                        }
+                        passwordupdate++;
+                    }
+
+                }
                 if (companyUpdate + credupdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate +
-                    smtpupdate + locationupdate + pathtypeupdate > 0 && !textBox.Text.Equals(noSelStr))
+                    smtpupdate + locationupdate + pathtypeupdate + usernameupdate + passwordupdate > 0 && !textBox.Text.Equals(noSelStr))
                 {
                     File.WriteAllText(scriptlocation, textBox.Text);
                 }
