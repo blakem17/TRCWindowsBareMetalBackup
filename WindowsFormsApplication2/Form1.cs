@@ -529,7 +529,7 @@ namespace WindowsFormsApplication2
                     }
 
                 }
-                if (companyUpdate + credupdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate +
+                if (companyUpdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate +
                     smtpupdate + locationupdate + pathtypeupdate + usernameupdate + passwordupdate > 0 && !textBox.Text.Equals(noSelStr))
                 {
                     File.WriteAllText(scriptlocation, textBox.Text);
