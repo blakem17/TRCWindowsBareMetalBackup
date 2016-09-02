@@ -714,10 +714,25 @@ namespace WindowsFormsApplication2
                 File.Create(logTB.Text);
             }
             var BackupTarget = "";
+            var username = "";
+            var password = "";
             string selectedItem = pathTYCB.SelectedItem.ToString();
             if (selectedItem.Contains("NETWORKPATH"))
             {
-                BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
+                if (userTB.Text.Length > 0)
+                {
+                    
+                    if (passwordTB.Text.Length > 0)
+                    {
+                                         
+                        BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\" -Credential $Cred";
+                    }
+                }
+                else
+                {
+                    BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
+                }
+                
             }
             if (selectedItem.Contains("DISK"))
             {
@@ -736,15 +751,30 @@ namespace WindowsFormsApplication2
             psinstace.AddScript("$backupPolicy = New-WBPolicy");
             psinstace.AddScript("Add-WBBareMetalRecovery -Policy $backupPolicy");
             psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
+            if (userTB.Text.Length > 0)
+            {
+                username = userTB.Text;
+                if (passwordTB.Text.Length > 0)
+                {
+                    password = passwordTB.Text;
+                    psinstace.AddScript("$username = " + "\"" + userTB.Text + "\"");
+                    psinstace.AddScript("$password = " + "\"" + password + "\"");
+                    psinstace.AddScript("$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force");
+                    psinstace.AddScript("$cred = New-Object -TypeName System.Management.Automation.PSCredential -Argumentlist $username, $SecurePassword");
+                }
+    
+            }
             psinstace.AddScript(BackupTarget);
             psinstace.AddScript("Add-WBBackupTarget $BackupTarget -Policy $backupPolicy");
             psinstace.AddScript("Start-WBBackup -Policy $backupPolicy");
             var results = psinstace.Invoke();
             Console.WriteLine(psinstace.Streams.Error.Count().ToString() + "Error Counts");
-            foreach (var errorRecord in psinstace.Streams.Error)
+
+           foreach (var errorRecord in psinstace.Streams.Error)
             {
-                Console.WriteLine(errorRecord.ToString()+ "");
-            }
+               Console.WriteLine(errorRecord.ToString()+ "");
+     
+           }
             return;
         }
 
