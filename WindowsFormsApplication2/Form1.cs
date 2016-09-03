@@ -399,168 +399,26 @@ namespace WindowsFormsApplication2
             string upathtype = pathTYCB.Text;
             string uusername = userTB.Text;
             string upassword = passwordTB.Text;
-            int companyUpdate = 0;
-            int directoryupdate = 0;
-            int emailtoupdate = 0;
-            int emailfrupdate = 0;
-            int logupdate = 0;
-            int smtpupdate = 0;
-            int locationupdate = 0;
-            int pathtypeupdate = 0;
-            int usernameupdate = 0;
-            int passwordupdate = 0;
             string scriptlocation = installDirectory + "UserConfig.txt";
-            string[] lines = System.IO.File.ReadAllLines(scriptlocation);
-            foreach (string line in lines)
+            string companyline = compIdent + " \"" + uCompany + "\"";
+            string directoryline = dirIdent + " \"" + uDirectory + "\"";
+            string emailtoline = emToIdent + " \"" + uEmailTo + "\"";
+            string emailfromline = emFrIdent + " \"" + uEmailFr + "\"";
+            string logfileline = lgFlIdent + " \"" + uLog + "\"";
+            string smtpline = smtpIdent + " \"" + uSmtp + "\"";
+            string locationline = locationIdent + " \"" + ulocation + "\"";
+            string pathtypeline = pthTpIdent + " \"" + upathtype + "\"";
+            string usernameline = usernameIdent + " \"" + uusername + "\"";
+            string passwordline = passwordIdent + " \"" + upassword + "\"";
+            string[] lines = {companyline,directoryline,emailtoline,emailfromline,logfileline,smtpline,locationline,pathtypeline,usernameline,passwordline};
+            var filewritten = 0;
+            if (filewritten == 0)
             {
+                File.Delete(scriptlocation);
+                File.WriteAllLines(scriptlocation, lines);
+                filewritten++;
             }
 
-
-            if (File.Exists(scriptlocation))
-            {
-                if (companyUpdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-
-                    }
-                }
-                if (directoryupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(dirIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, dirIdent + " \"" + uDirectory + "\"");
-                        }
-                        directoryupdate++;
-                    }
-                }
-                if (emailtoupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(emToIdent))
-                        {
-                            if (emailToTB.Enabled == true)
-                            {
-                                textBox.Text = textBox.Text.Replace(line, emToIdent + " \"" + uEmailTo + "\"");
-                            }
-                            else
-                            {
-                                textBox.Text = textBox.Text.Replace(line, emToIdent + " \"" + "\"");
-                            }
-
-                        }
-                        emailtoupdate++;
-                    }
-                }
-                if (emailfrupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(emFrIdent))
-                        {
-                            if (emailFTB.Enabled == true)
-                            {
-                                textBox.Text = textBox.Text.Replace(line, emFrIdent + " \"" + uEmailFr + "\"");
-                            }
-                            else
-                            {
-                                textBox.Text = textBox.Text.Replace(line, emFrIdent + " \"" + "\"");
-                            }
-
-                        }
-                        emailfrupdate++;
-                    }
-
-                }
-                if (logupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(lgFlIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, lgFlIdent + " \"" + uLog + "\"");
-                        }
-                        logupdate++;
-                    }
-                }
-                if (smtpupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(smtpIdent))
-                        {
-                            if (smtpTB.Enabled == true)
-                            {
-                                textBox.Text = textBox.Text.Replace(line, smtpIdent + " \"" + uSmtp + "\"");
-                            }
-                            else
-                            {
-                                textBox.Text = textBox.Text.Replace(line, smtpIdent + " \"" + "\"");
-                            }
-
-                        }
-                        smtpupdate++;
-                    }
-
-                }
-                if (locationupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(locationIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, locationIdent + " \"" + ulocation + "\"");
-                        }
-                        locationupdate++;
-                    }
-
-                }
-                if (pathtypeupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(pthTpIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, pthTpIdent + " \"" + upathtype + "\"");
-                        }
-                        locationupdate++;
-                    }
-
-                }
-                if (usernameupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(usernameIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, usernameIdent + " \"" + uusername + "\"");
-                        }
-                        usernameupdate++;
-                    }
-
-                }
-                if (passwordupdate == 0)
-                {
-                    foreach (var line in textBox.Lines)
-                    {
-                        if (line.Contains(passwordIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, passwordIdent + " \"" + upassword + "\"");
-                        }
-                        passwordupdate++;
-                    }
-
-                }
-                if (companyUpdate + directoryupdate + emailtoupdate + emailfrupdate + logupdate +
-                    smtpupdate + locationupdate + pathtypeupdate + usernameupdate + passwordupdate > 0 && !textBox.Text.Equals(noSelStr))
-                {
-                    File.WriteAllText(scriptlocation, textBox.Text);
-                }
-
-            }
         }
 
         public void getUserSettings(string[] arr)
