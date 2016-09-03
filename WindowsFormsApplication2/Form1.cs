@@ -144,7 +144,6 @@ namespace WindowsFormsApplication2
                             directoryTB.Text = u;
 
                         }
-                        ;
                     }
                     if (s.Contains(lgFlIdent))
                     {
@@ -270,9 +269,26 @@ namespace WindowsFormsApplication2
                         var matches = reg.Matches(s);
                         foreach (var item in matches)
                         {
-
-                            string u = item.ToString().Replace("\"", "");
-                            pathTYCB.Text = u;
+                            if (item.ToString().Contains("NETWORKPATH"))
+                            {
+                                pathTYCB.SelectedIndex = 1;
+                            }
+                            if (item.ToString().Contains("DISK"))
+                            {
+                                pathTYCB.SelectedIndex = 0;
+                            }
+                            if (item.ToString().Contains("VOLUME"))
+                            {
+                                pathTYCB.SelectedIndex = 2;
+                            }
+                            if (item.ToString().Contains("VOLUMEPATH"))
+                            {
+                                pathTYCB.SelectedIndex = 3;
+                            }
+                            else
+                            {
+                                pathTYCB.SelectedIndex = 4;
+                            }
 
                         }
                     }
@@ -361,7 +377,7 @@ namespace WindowsFormsApplication2
 
         private void pathTYCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (pathTYCB.SelectedText.Contains("NETWORK"))
+            if (pathTYCB.SelectedIndex == 1)
             {
                 userTB.Enabled = true;
                 passwordTB.Enabled = true;

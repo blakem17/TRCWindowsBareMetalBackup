@@ -31,6 +31,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.passwordLB = new System.Windows.Forms.Label();
+            this.passwordTB = new System.Windows.Forms.TextBox();
             this.emailCheck = new System.Windows.Forms.CheckBox();
             this.startButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
@@ -53,8 +55,6 @@
             this.userLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
-            this.passwordTB = new System.Windows.Forms.TextBox();
-            this.passwordLB = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +106,26 @@
             this.tabPage1.Text = "Configuration";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // passwordLB
+            // 
+            this.passwordLB.AutoSize = true;
+            this.passwordLB.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.passwordLB.Location = new System.Drawing.Point(925, 296);
+            this.passwordLB.MinimumSize = new System.Drawing.Size(10, 10);
+            this.passwordLB.Name = "passwordLB";
+            this.passwordLB.Size = new System.Drawing.Size(53, 13);
+            this.passwordLB.TabIndex = 28;
+            this.passwordLB.Text = "Password";
+            // 
+            // passwordTB
+            // 
+            this.passwordTB.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.passwordTB.Location = new System.Drawing.Point(842, 289);
+            this.passwordTB.MinimumSize = new System.Drawing.Size(10, 10);
+            this.passwordTB.Name = "passwordTB";
+            this.passwordTB.Size = new System.Drawing.Size(78, 20);
+            this.passwordTB.TabIndex = 27;
             // 
             // emailCheck
             // 
@@ -187,7 +207,8 @@
             "DISK",
             "NETWORKPATH",
             "VOLUME ",
-            "VOLUMEPATH"});
+            "VOLUMEPATH",
+            " "});
             this.pathTYCB.Location = new System.Drawing.Point(702, 314);
             this.pathTYCB.MinimumSize = new System.Drawing.Size(10, 0);
             this.pathTYCB.Name = "pathTYCB";
@@ -336,26 +357,6 @@
             this.companyLB.Size = new System.Drawing.Size(51, 13);
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
-            // 
-            // passwordTB
-            // 
-            this.passwordTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.passwordTB.Location = new System.Drawing.Point(842, 289);
-            this.passwordTB.MinimumSize = new System.Drawing.Size(10, 10);
-            this.passwordTB.Name = "passwordTB";
-            this.passwordTB.Size = new System.Drawing.Size(78, 20);
-            this.passwordTB.TabIndex = 27;
-            // 
-            // passwordLB
-            // 
-            this.passwordLB.AutoSize = true;
-            this.passwordLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.passwordLB.Location = new System.Drawing.Point(925, 296);
-            this.passwordLB.MinimumSize = new System.Drawing.Size(10, 10);
-            this.passwordLB.Name = "passwordLB";
-            this.passwordLB.Size = new System.Drawing.Size(53, 13);
-            this.passwordLB.TabIndex = 28;
-            this.passwordLB.Text = "Password";
             // 
             // Form1
             // 
