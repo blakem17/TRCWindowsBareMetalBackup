@@ -361,7 +361,16 @@ namespace WindowsFormsApplication2
 
         private void pathTYCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (pathTYCB.SelectedText.Contains("NETWORK"))
+            {
+                userTB.Enabled = true;
+                passwordTB.Enabled = true;
+            }
+            else
+            {
+                userTB.Enabled = false;
+                passwordTB.Enabled = false;
+            }
         }
 
         private void saveButtton_Click(object sender, EventArgs e)
@@ -709,10 +718,23 @@ namespace WindowsFormsApplication2
 
         void createBackup()
         {
-            if (!File.Exists(logTB.Text))
+            string backuplogdir = installDirectory + "backuplogs";
+            string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmm");
+            string backuplogfile = backuplogdir + "\\" + backupdaytime ;
+            string backuplogfiletxt = backuplogdir + "\\" + backupdaytime + ".txt";
+        
+            if (!Directory.Exists(backuplogdir))
             {
-                File.Create(logTB.Text);
+                Directory.CreateDirectory(backuplogdir);
             }
+            if(logTB.Text.Length > 0)
+            {
+                if (!File.Exists(logTB.Text))
+                {
+                    File.Create(logTB.Text);
+                }
+            }
+
             var BackupTarget = "";
             var username = "";
             var password = "";
@@ -768,13 +790,34 @@ namespace WindowsFormsApplication2
             psinstace.AddScript("Add-WBBackupTarget $BackupTarget -Policy $backupPolicy");
             psinstace.AddScript("Start-WBBackup -Policy $backupPolicy");
             var results = psinstace.Invoke();
+            var completeVar = 0;
+            foreach (var item in results)
+            {
+                if(item.ToString().Contains("The Backup operation completed"))
+                {
+                    completeVar++;
+                }
+                File.AppendAllText(backuplogfiletxt, item.ToString());
+                Console.WriteLine(item);
+
+            }
             Console.WriteLine(psinstace.Streams.Error.Count().ToString() + "Error Counts");
 
            foreach (var errorRecord in psinstace.Streams.Error)
             {
                Console.WriteLine(errorRecord.ToString()+ "");
-     
+                File.AppendAllText(backuplogfiletxt, errorRecord.ToString());
+
+            }
+            Console.WriteLine(completeVar);
+            if (completeVar > 0)
+            {
+                File.Move(backuplogfiletxt, backuplogfile + "COMPLETE.txt");
            }
+            else
+            {
+                File.Move(backuplogfiletxt, backuplogfile + "FAILED.txt");
+            }
             return;
         }
 
