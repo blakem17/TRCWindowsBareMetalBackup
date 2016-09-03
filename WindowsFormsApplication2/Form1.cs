@@ -198,7 +198,6 @@ namespace WindowsFormsApplication2
             {
                 string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
                 string joinded = String.Join(Environment.NewLine, fileTextArr1);
-                textBox.Text = joinded;
                 foreach (string s in fileTextArr1)
                 {
                     if (s.Contains(compIdent))
@@ -267,23 +266,24 @@ namespace WindowsFormsApplication2
                         var matches = reg.Matches(s);
                         foreach (var item in matches)
                         {
-                            if (item.ToString().Contains("NETWORKPATH"))
+                            string u = item.ToString().Replace("\"", "");
+                            if (u.Contains("NETWORKPATH"))
                             {
                                 pathTYCB.SelectedIndex = 1;
                             }
-                            if (item.ToString().Contains("DISK"))
+                            if (u.Contains("DISK"))
                             {
                                 pathTYCB.SelectedIndex = 0;
                             }
-                            if (item.ToString().Contains("VOLUME"))
+                            if (u.Contains("VOLUME"))
                             {
                                 pathTYCB.SelectedIndex = 2;
                             }
-                            if (item.ToString().Contains("VOLUMEPATH"))
+                            if (u.Contains("VOLUMEPATH"))
                             {
                                 pathTYCB.SelectedIndex = 3;
                             }
-                            else
+                            if(!u.Contains("VOLUMEPATH") && !u.Contains("VOLUME")&& !u.Contains("VOLUME")&& !u.Contains("NETWORKPATH"))
                             {
                                 pathTYCB.SelectedIndex = 4;
                             }
