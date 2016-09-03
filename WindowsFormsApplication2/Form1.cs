@@ -56,9 +56,8 @@ namespace WindowsFormsApplication2
             var scriptlocation = installDirectory + "UserConfig.txt";
             if (!File.Exists(scriptlocation))
             {
-                byte[] myfile = System.IO.File.ReadAllBytes(Resources.UserConfig);
-                string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
-                File.WriteAllText(scriptlocation, myfileStr);
+                string myfile = Resources.UserConfig;
+                File.WriteAllText(scriptlocation, myfile);
                 string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
                 string joinded = String.Join(Environment.NewLine, fileTextArr1);
                 textBox.Text = joinded;
