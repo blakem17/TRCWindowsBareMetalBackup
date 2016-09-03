@@ -1,0 +1,19 @@
+###########################################################################################
+####################Config File By Blake Morgan#########################################
+####################  Backup	 10/14/2015#################################################
+###########################################################################################
+##################### User Defined Variables###############################################
+$companyName = ""
+$compName = "$env:computername.$env:userdnsdomain"
+$emailTo = ""
+$emailFrom = ""
+$smtpServer = ""
+$pathType = ""
+$location = ""
+$username = ""
+$password = ""
+$directory = ""
+$dirExists = Test-Path $directory
+$logFile = ""
+$fileExists = Test-Path $logFile
+$sucStr = "The backup operation completed"

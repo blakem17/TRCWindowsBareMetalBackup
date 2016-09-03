@@ -53,7 +53,7 @@ namespace WindowsFormsApplication2
             setArr[5] = lgFlIdent;
             setArr[6] = pthTpIdent;
             setArr[7] = smtpIdent;
-            var scriptlocation = installDirectory + "WindowsBMR.ps1";
+            var scriptlocation = installDirectory + "UserConfig.txt";
             if (!File.Exists(scriptlocation))
             {
                 byte[] myfile = Resources.WindowsBMR;
@@ -411,7 +411,7 @@ namespace WindowsFormsApplication2
             int pathtypeupdate = 0;
             int usernameupdate = 0;
             int passwordupdate = 0;
-            string scriptlocation = installDirectory + "WindowsBMR.ps1";
+            string scriptlocation = installDirectory + "UserConfig.txt";
             if (File.Exists(scriptlocation))
             {
                 if (companyUpdate == 0)
@@ -594,7 +594,7 @@ namespace WindowsFormsApplication2
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            var scriptlocation = installDirectory + "WindowsBMR.ps1";
+            var scriptlocation = installDirectory + "UserConfig.txt";
             var scriptText = File.ReadAllText(scriptlocation);
             if (checkwindowsFeatureInsatlled() == true)
             {
