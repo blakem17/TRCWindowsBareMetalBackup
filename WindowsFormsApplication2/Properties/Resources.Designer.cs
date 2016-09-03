@@ -61,12 +61,17 @@ namespace RealClassUpdater.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to ###########################################################################################
+        ///####################Config File By Blake Morgan#########################################
+        ///####################  Backup	 10/14/2015#################################################
+        ///###########################################################################################
+        ///##################### User Defined Variables###############################################
+        ///$companyName = &quot;&quot;
+        ///$compName = &quot;$env:computername.$e [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static byte[] WindowsBMR {
+        internal static string UserConfig {
             get {
-                object obj = ResourceManager.GetObject("WindowsBMR", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("UserConfig", resourceCulture);
             }
         }
     }

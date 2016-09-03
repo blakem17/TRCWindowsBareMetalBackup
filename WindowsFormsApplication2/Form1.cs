@@ -56,7 +56,7 @@ namespace WindowsFormsApplication2
             var scriptlocation = installDirectory + "UserConfig.txt";
             if (!File.Exists(scriptlocation))
             {
-                byte[] myfile = Resources.WindowsBMR;
+                byte[] myfile = System.IO.File.ReadAllBytes(Resources.UserConfig);
                 string myfileStr = System.Text.Encoding.UTF8.GetString(myfile);
                 File.WriteAllText(scriptlocation, myfileStr);
                 string[] fileTextArr1 = File.ReadAllLines(scriptlocation);
