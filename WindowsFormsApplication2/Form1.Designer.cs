@@ -125,7 +125,7 @@
             this.passwordTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.passwordTB.Name = "passwordTB";
             this.passwordTB.Size = new System.Drawing.Size(78, 20);
-            this.passwordTB.TabIndex = 27;
+            this.passwordTB.TabIndex = 4;
             // 
             // emailCheck
             // 
@@ -143,7 +143,7 @@
             this.startButton.Location = new System.Drawing.Point(907, 234);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 23);
-            this.startButton.TabIndex = 25;
+            this.startButton.TabIndex = 13;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.button1_Click_1);
@@ -163,7 +163,7 @@
             this.locationButton.MinimumSize = new System.Drawing.Size(10, 10);
             this.locationButton.Name = "locationButton";
             this.locationButton.Size = new System.Drawing.Size(69, 23);
-            this.locationButton.TabIndex = 24;
+            this.locationButton.TabIndex = 7;
             this.locationButton.Text = "location";
             this.locationButton.UseVisualStyleBackColor = true;
             this.locationButton.Click += new System.EventHandler(this.locationButton_Click);
@@ -175,7 +175,7 @@
             this.companyTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.companyTB.Name = "companyTB";
             this.companyTB.Size = new System.Drawing.Size(161, 20);
-            this.companyTB.TabIndex = 5;
+            this.companyTB.TabIndex = 2;
             // 
             // locationTB
             // 
@@ -184,7 +184,7 @@
             this.locationTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.locationTB.Name = "locationTB";
             this.locationTB.Size = new System.Drawing.Size(163, 20);
-            this.locationTB.TabIndex = 23;
+            this.locationTB.TabIndex = 6;
             this.locationTB.TextChanged += new System.EventHandler(this.locationTB_TextChanged);
             // 
             // saveButtton
@@ -194,7 +194,7 @@
             this.saveButtton.MinimumSize = new System.Drawing.Size(10, 10);
             this.saveButtton.Name = "saveButtton";
             this.saveButtton.Size = new System.Drawing.Size(75, 23);
-            this.saveButtton.TabIndex = 22;
+            this.saveButtton.TabIndex = 1;
             this.saveButtton.Text = "Save";
             this.saveButtton.UseVisualStyleBackColor = true;
             this.saveButtton.Click += new System.EventHandler(this.saveButtton_Click);
@@ -213,7 +213,7 @@
             this.pathTYCB.MinimumSize = new System.Drawing.Size(10, 0);
             this.pathTYCB.Name = "pathTYCB";
             this.pathTYCB.Size = new System.Drawing.Size(161, 21);
-            this.pathTYCB.TabIndex = 21;
+            this.pathTYCB.TabIndex = 5;
             this.pathTYCB.SelectedIndexChanged += new System.EventHandler(this.pathTYCB_SelectedIndexChanged);
             // 
             // smtpLB
@@ -245,7 +245,7 @@
             this.userTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.userTB.Name = "userTB";
             this.userTB.Size = new System.Drawing.Size(78, 20);
-            this.userTB.TabIndex = 6;
+            this.userTB.TabIndex = 3;
             // 
             // logLB
             // 
@@ -265,7 +265,7 @@
             this.directoryTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.directoryTB.Name = "directoryTB";
             this.directoryTB.Size = new System.Drawing.Size(161, 20);
-            this.directoryTB.TabIndex = 7;
+            this.directoryTB.TabIndex = 8;
             // 
             // emailFRLB
             // 
@@ -285,7 +285,7 @@
             this.emailToTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailToTB.Name = "emailToTB";
             this.emailToTB.Size = new System.Drawing.Size(161, 20);
-            this.emailToTB.TabIndex = 8;
+            this.emailToTB.TabIndex = 12;
             // 
             // emailToLB
             // 
@@ -325,7 +325,7 @@
             this.logTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.logTB.Name = "logTB";
             this.logTB.Size = new System.Drawing.Size(161, 20);
-            this.logTB.TabIndex = 11;
+            this.logTB.TabIndex = 9;
             // 
             // userLB
             // 
@@ -345,7 +345,7 @@
             this.smtpTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.smtpTB.Name = "smtpTB";
             this.smtpTB.Size = new System.Drawing.Size(161, 20);
-            this.smtpTB.TabIndex = 12;
+            this.smtpTB.TabIndex = 11;
             // 
             // companyLB
             // 

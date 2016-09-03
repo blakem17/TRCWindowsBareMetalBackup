@@ -38,9 +38,8 @@ namespace WindowsFormsApplication2
         private string passwordIdent = "$password =";
         private string usernameIdent = "$username =";
         private string[] setArr = new string[8];
+        public string installDirectory = Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
 
-        string installDirectory =
-            Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
 
         public Form1()
         {
@@ -411,17 +410,19 @@ namespace WindowsFormsApplication2
             int usernameupdate = 0;
             int passwordupdate = 0;
             string scriptlocation = installDirectory + "UserConfig.txt";
+            string[] lines = System.IO.File.ReadAllLines(scriptlocation);
+            foreach (string line in lines)
+            {
+            }
+
+
             if (File.Exists(scriptlocation))
             {
                 if (companyUpdate == 0)
                 {
                     foreach (var line in textBox.Lines)
                     {
-                        if (line.Contains(compIdent))
-                        {
-                            textBox.Text = textBox.Text.Replace(line, compIdent + " \"" + uCompany + "\"");
-                        }
-                        companyUpdate ++;
+
                     }
                 }
                 if (directoryupdate == 0)
