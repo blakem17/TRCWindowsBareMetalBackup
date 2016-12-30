@@ -456,6 +456,7 @@ namespace WindowsFormsApplication2
             var scriptText = File.ReadAllText(scriptlocation);
             if (checkwindowsFeatureInsatlled() == true)
             {
+                textBox.AppendText(Environment.NewLine + "Starting Backup");
                 createBackup();
 
 /*                textBox.AppendText(Environment.NewLine + "Server Backup Installed");
@@ -494,6 +495,8 @@ namespace WindowsFormsApplication2
                     if (InstalledWindowsBackupFeatures()== true)
                     {
                         textBox.AppendText(Environment.NewLine + "Server Backup Installed");
+                        textBox.AppendText(Environment.NewLine + "Starting Backup");
+                        createBackup();
                     }
                 }
 
@@ -596,10 +599,15 @@ namespace WindowsFormsApplication2
             string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmm");
             string backuplogfile = backuplogdir + "\\" + backupdaytime ;
             string backuplogfiletxt = backuplogdir + "\\" + backupdaytime + ".txt";
-        
+
             if (!Directory.Exists(backuplogdir))
             {
+                textBox.AppendText(Environment.NewLine + "Backup Driectory Check FAILED: Creating Backup Log Driectory");
                 Directory.CreateDirectory(backuplogdir);
+            }
+            else
+            {
+                textBox.AppendText(Environment.NewLine + "Backup Driectory Check PASSED");
             }
             if(logTB.Text.Length > 0)
             {
@@ -681,6 +689,7 @@ namespace WindowsFormsApplication2
             {
                Console.WriteLine(errorRecord.ToString()+ "");
                 File.AppendAllText(backuplogfiletxt, errorRecord.ToString());
+                textBox.AppendText(Environment.NewLine + errorRecord.ToString());
 
             }
             Console.WriteLine(completeVar);
