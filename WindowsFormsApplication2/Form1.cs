@@ -595,6 +595,7 @@ namespace WindowsFormsApplication2
 
         void createBackup()
         {
+            backupStatus.Text = "STARTED";
             string backuplogdir = installDirectory + "backuplogs";
             string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmm");
             string backuplogfile = backuplogdir + "\\" + backupdaytime ;
@@ -650,6 +651,7 @@ namespace WindowsFormsApplication2
             {
                 BackupTarget = " $BackupTarget = New-WBBackupTarget -Volumepath \"$location\"";
             }
+            backupStatus.Text = "Running";
             PowerShell psinstace = PowerShell.Create();
             psinstace.AddScript("Import-Module -Name ServerManager");
             psinstace.AddScript("$backupPolicy = New-WBPolicy");
@@ -696,15 +698,22 @@ namespace WindowsFormsApplication2
             if (completeVar > 0)
             {
                 File.Move(backuplogfiletxt, backuplogfile + "COMPLETE.txt");
-           }
+                backupStatus.Text = "COMPLETE";
+            }
             else
             {
                 File.Move(backuplogfiletxt, backuplogfile + "FAILED.txt");
+                backupStatus.Text = "FAILED";
             }
             return;
         }
 
         private void locationTB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

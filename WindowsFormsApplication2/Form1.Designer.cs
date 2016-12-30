@@ -55,6 +55,8 @@
             this.userLB = new System.Windows.Forms.Label();
             this.smtpTB = new System.Windows.Forms.TextBox();
             this.companyLB = new System.Windows.Forms.Label();
+            this.backupStatusTitle = new System.Windows.Forms.Label();
+            this.backupStatus = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +76,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.backupStatus);
+            this.tabPage1.Controls.Add(this.backupStatusTitle);
             this.tabPage1.Controls.Add(this.passwordLB);
             this.tabPage1.Controls.Add(this.passwordTB);
             this.tabPage1.Controls.Add(this.emailCheck);
@@ -358,6 +362,26 @@
             this.companyLB.TabIndex = 13;
             this.companyLB.Text = "Company";
             // 
+            // backupStatusTitle
+            // 
+            this.backupStatusTitle.AutoSize = true;
+            this.backupStatusTitle.Location = new System.Drawing.Point(706, 16);
+            this.backupStatusTitle.Name = "backupStatusTitle";
+            this.backupStatusTitle.Size = new System.Drawing.Size(80, 13);
+            this.backupStatusTitle.TabIndex = 29;
+            this.backupStatusTitle.Text = "Backup Status:";
+            this.backupStatusTitle.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // backupStatus
+            // 
+            this.backupStatus.AutoSize = true;
+            this.backupStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backupStatus.Location = new System.Drawing.Point(792, 16);
+            this.backupStatus.Name = "backupStatus";
+            this.backupStatus.Size = new System.Drawing.Size(40, 22);
+            this.backupStatus.TabIndex = 30;
+            this.backupStatus.Text = "N/A";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +427,8 @@
         private System.Windows.Forms.CheckBox emailCheck;
         private System.Windows.Forms.Label passwordLB;
         private System.Windows.Forms.TextBox passwordTB;
+        private System.Windows.Forms.Label backupStatusTitle;
+        private System.Windows.Forms.Label backupStatus;
     }
 }
 
