@@ -35,7 +35,6 @@
             this.passwordTB = new System.Windows.Forms.TextBox();
             this.emailCheck = new System.Windows.Forms.CheckBox();
             this.startButton = new System.Windows.Forms.Button();
-            this.textBox = new System.Windows.Forms.RichTextBox();
             this.locationButton = new System.Windows.Forms.Button();
             this.companyTB = new System.Windows.Forms.TextBox();
             this.locationTB = new System.Windows.Forms.TextBox();
@@ -57,8 +56,12 @@
             this.companyLB = new System.Windows.Forms.Label();
             this.backupStatusTitle = new System.Windows.Forms.Label();
             this.backupStatus = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox = new System.Windows.Forms.RichTextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -68,10 +71,11 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(4, 3);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(707, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(996, 535);
+            this.tabControl1.Size = new System.Drawing.Size(319, 523);
             this.tabControl1.TabIndex = 25;
             // 
             // tabPage1
@@ -82,7 +86,6 @@
             this.tabPage1.Controls.Add(this.passwordTB);
             this.tabPage1.Controls.Add(this.emailCheck);
             this.tabPage1.Controls.Add(this.startButton);
-            this.tabPage1.Controls.Add(this.textBox);
             this.tabPage1.Controls.Add(this.locationButton);
             this.tabPage1.Controls.Add(this.companyTB);
             this.tabPage1.Controls.Add(this.locationTB);
@@ -105,7 +108,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(988, 509);
+            this.tabPage1.Size = new System.Drawing.Size(311, 497);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Configuration";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -115,7 +118,7 @@
             // 
             this.passwordLB.AutoSize = true;
             this.passwordLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.passwordLB.Location = new System.Drawing.Point(925, 296);
+            this.passwordLB.Location = new System.Drawing.Point(234, 283);
             this.passwordLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.passwordLB.Name = "passwordLB";
             this.passwordLB.Size = new System.Drawing.Size(53, 13);
@@ -125,7 +128,7 @@
             // passwordTB
             // 
             this.passwordTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.passwordTB.Location = new System.Drawing.Point(842, 289);
+            this.passwordTB.Location = new System.Drawing.Point(151, 276);
             this.passwordTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.passwordTB.Name = "passwordTB";
             this.passwordTB.Size = new System.Drawing.Size(78, 20);
@@ -134,7 +137,7 @@
             // emailCheck
             // 
             this.emailCheck.AutoSize = true;
-            this.emailCheck.Location = new System.Drawing.Point(702, 181);
+            this.emailCheck.Location = new System.Drawing.Point(11, 168);
             this.emailCheck.Name = "emailCheck";
             this.emailCheck.Size = new System.Drawing.Size(136, 17);
             this.emailCheck.TabIndex = 26;
@@ -144,7 +147,7 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(907, 234);
+            this.startButton.Location = new System.Drawing.Point(216, 221);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 23);
             this.startButton.TabIndex = 13;
@@ -152,18 +155,10 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // textBox
-            // 
-            this.textBox.Location = new System.Drawing.Point(12, 16);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(687, 470);
-            this.textBox.TabIndex = 1;
-            this.textBox.Text = "";
-            // 
             // locationButton
             // 
             this.locationButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.locationButton.Location = new System.Drawing.Point(869, 341);
+            this.locationButton.Location = new System.Drawing.Point(178, 328);
             this.locationButton.MinimumSize = new System.Drawing.Size(10, 10);
             this.locationButton.Name = "locationButton";
             this.locationButton.Size = new System.Drawing.Size(69, 23);
@@ -175,7 +170,7 @@
             // companyTB
             // 
             this.companyTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.companyTB.Location = new System.Drawing.Point(702, 263);
+            this.companyTB.Location = new System.Drawing.Point(11, 250);
             this.companyTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.companyTB.Name = "companyTB";
             this.companyTB.Size = new System.Drawing.Size(161, 20);
@@ -184,7 +179,7 @@
             // locationTB
             // 
             this.locationTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.locationTB.Location = new System.Drawing.Point(702, 341);
+            this.locationTB.Location = new System.Drawing.Point(11, 328);
             this.locationTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.locationTB.Name = "locationTB";
             this.locationTB.Size = new System.Drawing.Size(163, 20);
@@ -194,7 +189,7 @@
             // saveButtton
             // 
             this.saveButtton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.saveButtton.Location = new System.Drawing.Point(705, 234);
+            this.saveButtton.Location = new System.Drawing.Point(14, 221);
             this.saveButtton.MinimumSize = new System.Drawing.Size(10, 10);
             this.saveButtton.Name = "saveButtton";
             this.saveButtton.Size = new System.Drawing.Size(75, 23);
@@ -213,7 +208,7 @@
             "VOLUME ",
             "VOLUMEPATH",
             " "});
-            this.pathTYCB.Location = new System.Drawing.Point(702, 314);
+            this.pathTYCB.Location = new System.Drawing.Point(11, 301);
             this.pathTYCB.MinimumSize = new System.Drawing.Size(10, 0);
             this.pathTYCB.Name = "pathTYCB";
             this.pathTYCB.Size = new System.Drawing.Size(161, 21);
@@ -224,7 +219,7 @@
             // 
             this.smtpLB.AutoSize = true;
             this.smtpLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.smtpLB.Location = new System.Drawing.Point(869, 446);
+            this.smtpLB.Location = new System.Drawing.Point(178, 433);
             this.smtpLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.smtpLB.Name = "smtpLB";
             this.smtpLB.Size = new System.Drawing.Size(37, 13);
@@ -235,7 +230,7 @@
             // 
             this.pathTyLB.AutoSize = true;
             this.pathTyLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.pathTyLB.Location = new System.Drawing.Point(870, 317);
+            this.pathTyLB.Location = new System.Drawing.Point(179, 304);
             this.pathTyLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.pathTyLB.Name = "pathTyLB";
             this.pathTyLB.Size = new System.Drawing.Size(56, 13);
@@ -245,7 +240,7 @@
             // userTB
             // 
             this.userTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.userTB.Location = new System.Drawing.Point(702, 289);
+            this.userTB.Location = new System.Drawing.Point(11, 276);
             this.userTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.userTB.Name = "userTB";
             this.userTB.Size = new System.Drawing.Size(78, 20);
@@ -255,7 +250,7 @@
             // 
             this.logLB.AutoSize = true;
             this.logLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.logLB.Location = new System.Drawing.Point(874, 398);
+            this.logLB.Location = new System.Drawing.Point(183, 385);
             this.logLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.logLB.Name = "logLB";
             this.logLB.Size = new System.Drawing.Size(44, 13);
@@ -265,7 +260,7 @@
             // directoryTB
             // 
             this.directoryTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.directoryTB.Location = new System.Drawing.Point(702, 365);
+            this.directoryTB.Location = new System.Drawing.Point(11, 352);
             this.directoryTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.directoryTB.Name = "directoryTB";
             this.directoryTB.Size = new System.Drawing.Size(161, 20);
@@ -275,7 +270,7 @@
             // 
             this.emailFRLB.AutoSize = true;
             this.emailFRLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailFRLB.Location = new System.Drawing.Point(871, 420);
+            this.emailFRLB.Location = new System.Drawing.Point(180, 407);
             this.emailFRLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailFRLB.Name = "emailFRLB";
             this.emailFRLB.Size = new System.Drawing.Size(58, 13);
@@ -285,7 +280,7 @@
             // emailToTB
             // 
             this.emailToTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailToTB.Location = new System.Drawing.Point(702, 466);
+            this.emailToTB.Location = new System.Drawing.Point(11, 453);
             this.emailToTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailToTB.Name = "emailToTB";
             this.emailToTB.Size = new System.Drawing.Size(161, 20);
@@ -295,7 +290,7 @@
             // 
             this.emailToLB.AutoSize = true;
             this.emailToLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailToLB.Location = new System.Drawing.Point(867, 469);
+            this.emailToLB.Location = new System.Drawing.Point(176, 456);
             this.emailToLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailToLB.Name = "emailToLB";
             this.emailToLB.Size = new System.Drawing.Size(48, 13);
@@ -305,7 +300,7 @@
             // emailFTB
             // 
             this.emailFTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.emailFTB.Location = new System.Drawing.Point(702, 417);
+            this.emailFTB.Location = new System.Drawing.Point(11, 404);
             this.emailFTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.emailFTB.Name = "emailFTB";
             this.emailFTB.Size = new System.Drawing.Size(161, 20);
@@ -315,7 +310,7 @@
             // 
             this.directoryLB.AutoSize = true;
             this.directoryLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.directoryLB.Location = new System.Drawing.Point(869, 372);
+            this.directoryLB.Location = new System.Drawing.Point(178, 359);
             this.directoryLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.directoryLB.Name = "directoryLB";
             this.directoryLB.Size = new System.Drawing.Size(66, 13);
@@ -325,7 +320,7 @@
             // logTB
             // 
             this.logTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.logTB.Location = new System.Drawing.Point(702, 391);
+            this.logTB.Location = new System.Drawing.Point(11, 378);
             this.logTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.logTB.Name = "logTB";
             this.logTB.Size = new System.Drawing.Size(161, 20);
@@ -335,7 +330,7 @@
             // 
             this.userLB.AutoSize = true;
             this.userLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.userLB.Location = new System.Drawing.Point(786, 296);
+            this.userLB.Location = new System.Drawing.Point(95, 283);
             this.userLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.userLB.Name = "userLB";
             this.userLB.Size = new System.Drawing.Size(57, 13);
@@ -345,7 +340,7 @@
             // smtpTB
             // 
             this.smtpTB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.smtpTB.Location = new System.Drawing.Point(702, 443);
+            this.smtpTB.Location = new System.Drawing.Point(11, 430);
             this.smtpTB.MinimumSize = new System.Drawing.Size(10, 10);
             this.smtpTB.Name = "smtpTB";
             this.smtpTB.Size = new System.Drawing.Size(161, 20);
@@ -355,7 +350,7 @@
             // 
             this.companyLB.AutoSize = true;
             this.companyLB.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.companyLB.Location = new System.Drawing.Point(869, 266);
+            this.companyLB.Location = new System.Drawing.Point(178, 253);
             this.companyLB.MinimumSize = new System.Drawing.Size(10, 10);
             this.companyLB.Name = "companyLB";
             this.companyLB.Size = new System.Drawing.Size(51, 13);
@@ -365,7 +360,7 @@
             // backupStatusTitle
             // 
             this.backupStatusTitle.AutoSize = true;
-            this.backupStatusTitle.Location = new System.Drawing.Point(706, 16);
+            this.backupStatusTitle.Location = new System.Drawing.Point(11, 104);
             this.backupStatusTitle.Name = "backupStatusTitle";
             this.backupStatusTitle.Size = new System.Drawing.Size(80, 13);
             this.backupStatusTitle.TabIndex = 29;
@@ -376,11 +371,38 @@
             // 
             this.backupStatus.AutoSize = true;
             this.backupStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupStatus.Location = new System.Drawing.Point(792, 16);
+            this.backupStatus.Location = new System.Drawing.Point(97, 104);
             this.backupStatus.Name = "backupStatus";
             this.backupStatus.Size = new System.Drawing.Size(40, 22);
             this.backupStatus.TabIndex = 30;
             this.backupStatus.Text = "N/A";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(311, 497);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Logs";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox
+            // 
+            this.textBox.Location = new System.Drawing.Point(12, 12);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(687, 514);
+            this.textBox.TabIndex = 26;
+            this.textBox.Text = "";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(4, 7);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(304, 485);
+            this.listBox1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -388,13 +410,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1002, 538);
+            this.ClientSize = new System.Drawing.Size(1039, 531);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -403,7 +427,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RichTextBox textBox;
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.TextBox companyTB;
         private System.Windows.Forms.TextBox locationTB;
@@ -429,6 +452,9 @@
         private System.Windows.Forms.TextBox passwordTB;
         private System.Windows.Forms.Label backupStatusTitle;
         private System.Windows.Forms.Label backupStatus;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.RichTextBox textBox;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

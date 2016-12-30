@@ -41,9 +41,11 @@ namespace WindowsFormsApplication2
         public string installDirectory = Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
 
 
+
         public Form1()
         {
             InitializeComponent();
+            tabControl1.SelectedIndexChanged += new EventHandler(tabControl1_SelectedIndexchanged);
             setArr[0] = compIdent;
             setArr[1] = credIdent;
             setArr[2] = dirIdent;
@@ -704,6 +706,7 @@ namespace WindowsFormsApplication2
             {
                 File.Move(backuplogfiletxt, backuplogfile + "FAILED.txt");
                 backupStatus.Text = "FAILED";
+                backupStatus.Text = tabControl1.SelectedIndex.ToString();
             }
             return;
         }
@@ -717,5 +720,21 @@ namespace WindowsFormsApplication2
         {
 
         }
+        private void tabControl1_SelectedIndexchanged(object sender, EventArgs e)
+        {
+            switch ((sender as TabControl).SelectedIndex)
+            {
+                case 0:
+                    // Do nothing here (let's suppose that TabPage index 0 is the address information which is already loaded.
+                    break;
+                case 1:
+                    string backuplogdir = installDirectory + "backuplogs";
+                    DirectoryInfo dinfo = new DirectoryInfo(backuplogdir);
+                    break;
+            }
+        }
+
+
     }
+
 }
