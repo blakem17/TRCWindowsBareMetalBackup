@@ -58,7 +58,7 @@
             this.backupStatus = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox = new System.Windows.Forms.RichTextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.fileListB = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -379,7 +379,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.listBox1);
+            this.tabPage2.Controls.Add(this.fileListB);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -396,13 +396,15 @@
             this.textBox.TabIndex = 26;
             this.textBox.Text = "";
             // 
-            // listBox1
+            // fileListB
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(4, 7);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(304, 485);
-            this.listBox1.TabIndex = 0;
+            this.fileListB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileListB.FormattingEnabled = true;
+            this.fileListB.ItemHeight = 16;
+            this.fileListB.Location = new System.Drawing.Point(4, 7);
+            this.fileListB.Name = "fileListB";
+            this.fileListB.Size = new System.Drawing.Size(304, 484);
+            this.fileListB.TabIndex = 0;
             // 
             // Form1
             // 
@@ -454,7 +456,7 @@
         private System.Windows.Forms.Label backupStatus;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RichTextBox textBox;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox fileListB;
     }
 }
 

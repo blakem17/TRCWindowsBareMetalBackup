@@ -46,6 +46,7 @@ namespace WindowsFormsApplication2
         {
             InitializeComponent();
             tabControl1.SelectedIndexChanged += new EventHandler(tabControl1_SelectedIndexchanged);
+            fileListB.SelectedIndexChanged += new EventHandler(fileListB_SelectedIndexChanged);
             setArr[0] = compIdent;
             setArr[1] = credIdent;
             setArr[2] = dirIdent;
@@ -725,15 +726,25 @@ namespace WindowsFormsApplication2
             switch ((sender as TabControl).SelectedIndex)
             {
                 case 0:
-                    // Do nothing here (let's suppose that TabPage index 0 is the address information which is already loaded.
+                    textBox.Text = "";
                     break;
                 case 1:
                     string backuplogdir = installDirectory + "backuplogs";
                     DirectoryInfo dinfo = new DirectoryInfo(backuplogdir);
+                    FileInfo[] Files = dinfo.GetFiles("*.txt");
+                    foreach (FileInfo file in Files) {
+
+                        fileListB.Items.Add(file.Name);
+                    }
+                    textBox.AppendText(Environment.NewLine + "Please Select a Log file for information about backup");
                     break;
             }
         }
-
+        private void fileListB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string curItem = fileListB.SelectedItem.ToString();
+            textBox.AppendText(Environment.NewLine + curItem);
+        }
 
     }
 
