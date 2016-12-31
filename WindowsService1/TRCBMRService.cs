@@ -2,10 +2,12 @@
 using System.Linq;
 using System.ServiceProcess;
 using System.IO;
+using System.Management.Automation;
+using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
 using System.Diagnostics;
 using PowerShell = System.Management.Automation.PowerShell;
-
+using System.Text;
 
 namespace WindowsService1
 {
@@ -71,23 +73,51 @@ namespace WindowsService1
             Debug.WriteLine("Checking If windows feature is installed");
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             string tempfilelocationUnformatted = installDirectory + "temp.txt";
-            PowerShell powerShell = PowerShell.Create();
-            string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup" ;
-            powerShell.AddScript(powershellScript);
-            var results = powerShell.Invoke();
-            Debug.WriteLine("Running Powershell");
             var l = 0;
-            foreach (var item in results)
+            string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup";
+           
+            Runspace runspace = RunspaceFactory.CreateRunspace();
+            Debug.WriteLine("Created runspace");
+            runspace.Open();
+            Debug.WriteLine("Opened runspace");
+            Pipeline pipeline = runspace.CreatePipeline();
+            Debug.WriteLine("Opened Runspace pipleine");
+            pipeline.Commands.AddScript(powershellScript);
+            Debug.WriteLine("Added Script to pipleine");
+            pipeline.Commands.Add("Out-String");
+            Debug.WriteLine("Told pipline to output to string");
+            Collection<PSObject> results = pipeline.Invoke();
+            Debug.WriteLine("Invoked the pipleine");
+            runspace.Close();
+            Debug.WriteLine("Closed the runspace");
+            StringBuilder stringBuilder = new StringBuilder();
+            Debug.WriteLine("Created StringBuildere");
+            foreach (PSObject obj in results)
             {
-                
-                string s = item.ToString();
-                Debug.WriteLine(s);
-                File.WriteAllText(tempfilelocationUnformatted, s);
-                if (s.Contains("Windows-Server-Backup") && s.Contains("X"))
-                {
-                      l = l + 1;
-                }
+                stringBuilder.AppendLine(obj.ToString());
+                Debug.WriteLine("Generating the string");
             }
+            string s = stringBuilder.ToString();
+            Debug.WriteLine(s);
+            Debug.WriteLine("Output the string");
+
+            //PowerShell powerShell = PowerShell.Create();
+            //string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup" ;
+            //powerShell.AddScript(powershellScript);
+            //var results = powerShell.Invoke();
+            //Debug.WriteLine("Running Powershell");
+            //var l = 0;
+            //foreach (var item in results)
+            //{
+
+            //    string s = item.ToString();
+            //    Debug.WriteLine(s);
+            //    File.WriteAllText(tempfilelocationUnformatted, s);
+            //    if (s.Contains("Windows-Server-Backup") && s.Contains("X"))
+            //    {
+            //          l = l + 1;
+            //    }
+            //}
             if (l >= 1)
             {
                 return true;
