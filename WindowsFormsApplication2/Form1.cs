@@ -38,7 +38,8 @@ namespace WindowsFormsApplication2
         private string passwordIdent = "$password =";
         private string usernameIdent = "$username =";
         private string[] setArr = new string[8];
-        public string installDirectory = Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
+        //public string installDirectory = Registry.CurrentUser.OpenSubKey(@"Software\Blakem\UserChoice").GetValue("InstallDirectory").ToString();
+        public string installDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
 
 
@@ -490,14 +491,23 @@ namespace WindowsFormsApplication2
                 case 1:
                     fileListB.Items.Clear();
                     string backuplogdir = installDirectory + "backuplogs";
-                    DirectoryInfo dinfo = new DirectoryInfo(backuplogdir);
-                    FileInfo[] Files = dinfo.GetFiles("*.txt");
-                    foreach (FileInfo file in Files) {
+                    if (Directory.Exists(backuplogdir))
+                    {
+                        DirectoryInfo dinfo = new DirectoryInfo(backuplogdir);
+                        FileInfo[] Files = dinfo.GetFiles("*.txt");
+                        foreach (FileInfo file in Files)
+                        {
 
-                        fileListB.Items.Add(file.Name);
+                            fileListB.Items.Add(file.Name);
+                        }
+                        textBox.AppendText(Environment.NewLine + "Please Select a Log file for information about backup");
+                        break;
                     }
-                    textBox.AppendText(Environment.NewLine + "Please Select a Log file for information about backup");
-                    break;
+                    else
+                    {
+                        Directory.CreateDirectory(backuplogdir);
+                        break;
+                    }
             }
         }
         private void fileListB_SelectedIndexChanged(object sender, EventArgs e)

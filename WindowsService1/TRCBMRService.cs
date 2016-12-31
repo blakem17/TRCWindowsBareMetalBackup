@@ -38,7 +38,6 @@ namespace WindowsService1
             {
                 //Let GUI know that the backup is starting
                 createBackup();
-
             }
             else
             {
