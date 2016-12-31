@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace WindowsService1
 {
-    public partial class Service1 : ServiceBase
+    public partial class TRCBMRService : ServiceBase
     {
-        public Service1()
+        public TRCBMRService()
         {
             InitializeComponent();
         }

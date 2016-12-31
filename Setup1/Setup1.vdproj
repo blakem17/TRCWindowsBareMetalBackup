@@ -21,32 +21,50 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0A7B8994619319FF0B464A07D0EFC9A8"
+        "OwnerKey" = "8:_97079A3D9C0B4FA89956FB9295FC7B55"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0B58ED601ABD4F9292C46E8162474503"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D254B7DAA042AC8BCF9A181B30EDE16E"
+        "MsmKey" = "8:_97079A3D9C0B4FA89956FB9295FC7B55"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D53503FE589696147E800050FC615996"
         "OwnerKey" = "8:_0B58ED601ABD4F9292C46E8162474503"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0B58ED601ABD4F9292C46E8162474503"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_97079A3D9C0B4FA89956FB9295FC7B55"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D53503FE589696147E800050FC615996"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0A7B8994619319FF0B464A07D0EFC9A8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0B58ED601ABD4F9292C46E8162474503"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D254B7DAA042AC8BCF9A181B30EDE16E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -106,6 +124,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -113,6 +139,34 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_27587BDB0B6B4374A8A3EB5DD52729FC"
+            {
+            "Name" = "8:Primary output from TRCBMRservice (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_97079A3D9C0B4FA89956FB9295FC7B55"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_1FF3181F_DCCB_46BF_8461_3118A9A40103"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AC8ED35686964553B13E411621B06B82"
+            {
+            "Name" = "8:Primary output from TRCBMRservice (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_97079A3D9C0B4FA89956FB9295FC7B55"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_7E4580C5_6D6A_44B1_BF6C_B4743B98BB8E"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -167,14 +221,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D254B7DAA042AC8BCF9A181B30EDE16E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D53503FE589696147E800050FC615996"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyIsInGAC" = "11:TRUE"
             "AssemblyAsmDisplayName" = "8:System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D254B7DAA042AC8BCF9A181B30EDE16E"
+                    "_D53503FE589696147E800050FC615996"
                     {
                     "Name" = "8:System.Management.Automation.dll"
                     "Attributes" = "3:512"
@@ -798,7 +852,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0B58ED601ABD4F9292C46E8162474503"
             {
-            "SourcePath" = "8:..\\WindowsFormsApplication2\\obj\\x64\\Release\\RealClassUpdater.exe"
+            "SourcePath" = "8:..\\WindowsFormsApplication2\\obj\\Debug\\RealClassUpdater.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4F2FADC263284B46938B1CF86D462041"
@@ -819,6 +873,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{A012EA6B-6CE6-46C1-B20D-F22C9E3A08D5}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_97079A3D9C0B4FA89956FB9295FC7B55"
+            {
+            "SourcePath" = "8:..\\WindowsService1\\obj\\Debug\\WindowsService1.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4F2FADC263284B46938B1CF86D462041"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{5363A247-2CEF-42D2-8CB6-041AE744FE8C}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

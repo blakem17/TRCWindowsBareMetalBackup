@@ -1,6 +1,6 @@
 ﻿namespace WindowsService1
 {
-    partial class Service1
+    partial class TRCBMRService
     {
         /// <summary> 
         /// Required designer variable.

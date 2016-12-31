@@ -39,7 +39,8 @@
             // 
             // TRCBMRService
             // 
-            this.TRCBMRService.ServiceName = "Service1";
+            this.TRCBMRService.ServiceName = "TRCBMRService";
+            this.TRCBMRService.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
