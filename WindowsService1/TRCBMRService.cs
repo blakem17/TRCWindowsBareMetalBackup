@@ -2,20 +2,7 @@
 using System.Linq;
 using System.ServiceProcess;
 using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using System.Reflection;
-using Microsoft.Win32;
-using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using Microsoft.PowerShell.Commands;
 using PowerShell = System.Management.Automation.PowerShell;
 
 
@@ -60,26 +47,29 @@ namespace WindowsService1
         private string createWinFeaturesText(string filelocation)
         {
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
-            PowerShell powerShell = PowerShell.Create();
             string tempfilelocationUnformatted = installDirectory + "temp.txt";
             string tempfilelocation = "\"" + tempfilelocationUnformatted.Replace(@"\", @"\\") + "\"";
-            string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup > " + tempfilelocation;
-            powerShell.AddScript(powershellScript);
-            powerShell.Invoke();
+
             return filelocation = tempfilelocationUnformatted;
         }
 
         Boolean checkwindowsFeatureInsatlled()
         {
-            textBox.Text = "";
+            string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
+            string tempfilelocationUnformatted = installDirectory + "temp.txt";
+            PowerShell powerShell = PowerShell.Create();
+            string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup" ;
+            powerShell.AddScript(powershellScript);
+            var results = powerShell.Invoke();
             var l = 0;
-            string[] stringarray = File.ReadAllLines(createWinFeaturesText(filelocation));
-            foreach (string s in stringarray)
+            foreach (var item in results)
+
             {
+                string s = item.ToString();
+                File.WriteAllText(tempfilelocationUnformatted, s);
                 if (s.Contains("Windows-Server-Backup") && s.Contains("X"))
                 {
-                    textBox.AppendText(Environment.NewLine + s);
-                    l = l + 1;
+                      l = l + 1;
                 }
             }
             if (l >= 1)
@@ -95,14 +85,20 @@ namespace WindowsService1
 
         Boolean checkwindowsFeatureInstallable()
         {
-            textBox.Text = "";
+            string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
+            string tempfilelocationUnformatted = installDirectory + "temp.txt";
+            PowerShell powerShell = PowerShell.Create();
+            string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup";
+            powerShell.AddScript(powershellScript);
+            var results = powerShell.Invoke();
             var l = 0;
-            string[] stringarray = File.ReadAllLines(createWinFeaturesText(filelocation));
-            foreach (string s in stringarray)
+            foreach (var item in results)
+
             {
+                string s = item.ToString();
+                File.WriteAllText(tempfilelocationUnformatted, s);
                 if (s.Contains("Windows-Server-Backup") && !s.Contains("X"))
                 {
-                    textBox.AppendText(Environment.NewLine + s);
                     l = l + 1;
                 }
             }
@@ -135,7 +131,7 @@ namespace WindowsService1
 
         void createBackup()
         {
-            backupStatus.Text = "STARTED";
+            string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             string backuplogdir = installDirectory + "backuplogs";
             string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmmss");
             string backuplogfile = backuplogdir + "\\" + backupdaytime;
@@ -143,20 +139,20 @@ namespace WindowsService1
 
             if (!Directory.Exists(backuplogdir))
             {
-                textBox.AppendText(Environment.NewLine + "Backup Driectory Check FAILED: Creating Backup Log Driectory");
+              //  textBox.AppendText(Environment.NewLine + "Backup Driectory Check FAILED: Creating Backup Log Driectory");
                 Directory.CreateDirectory(backuplogdir);
             }
             else
             {
-                textBox.AppendText(Environment.NewLine + "Backup Driectory Check PASSED");
+              //  textBox.AppendText(Environment.NewLine + "Backup Driectory Check PASSED");
             }
-            if (logTB.Text.Length > 0)
-            {
-                if (!File.Exists(logTB.Text))
-                {
-                    File.Create(logTB.Text);
-                }
-            }
+          //  if (logTB.Text.Length > 0)
+           // {
+           //     if (!File.Exists(logTB.Text))
+           //     {
+           //         File.Create(logTB.Text);
+            //    }
+          //  }
 
             var BackupTarget = "";
             var username = "";
