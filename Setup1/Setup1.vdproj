@@ -309,7 +309,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WindowsBMRClient"
         "ProductCode" = "8:{1C19C00D-01A6-4421-9138-1B9FED024622}"
-        "PackageCode" = "8:{27F46C16-233F-4DCA-89BE-FA98841B928D}"
+        "PackageCode" = "8:{1EE819F5-8E50-40E1-938B-B2A76C33BB32}"
         "UpgradeCode" = "8:{BE3E5261-8DA5-4360-9952-1E9D88D6398E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

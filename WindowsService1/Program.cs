@@ -20,6 +20,8 @@ namespace WindowsService1
                 new TRCBMRService()
             };
             ServiceBase.Run(ServicesToRun);
+            System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite);
+
         }
     }
 }

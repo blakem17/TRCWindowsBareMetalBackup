@@ -30,6 +30,7 @@
         {
             this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
             this.TRCBMRService = new System.ServiceProcess.ServiceInstaller();
+            this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
             // 
             // serviceProcessInstaller1
             // 
@@ -42,11 +43,16 @@
             this.TRCBMRService.ServiceName = "TRCBMRService";
             this.TRCBMRService.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
+            // serviceInstaller1
+            // 
+            this.serviceInstaller1.ServiceName = "Service1";
+            // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.serviceProcessInstaller1,
-            this.TRCBMRService});
+            this.TRCBMRService,
+            this.serviceInstaller1});
 
         }
 
@@ -54,5 +60,6 @@
 
         private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
         private System.ServiceProcess.ServiceInstaller TRCBMRService;
+        private System.ServiceProcess.ServiceInstaller serviceInstaller1;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace WindowsService1
 {
@@ -19,6 +20,7 @@ namespace WindowsService1
 
         protected override void OnStart(string[] args)
         {
+            System.IO.File.Create(AppDomain.CurrentDomain.BaseDirectory + "Onstart.txt");
         }
 
         protected override void OnStop()
