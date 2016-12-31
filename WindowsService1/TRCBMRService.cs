@@ -2,7 +2,22 @@
 using System.Linq;
 using System.ServiceProcess;
 using System.IO;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
+using System.Text.RegularExpressions;
+using System.Reflection;
+using Microsoft.Win32;
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
+using Microsoft.PowerShell.Commands;
 using PowerShell = System.Management.Automation.PowerShell;
+
 
 namespace WindowsService1
 {
@@ -177,7 +192,7 @@ namespace WindowsService1
             {
                 BackupTarget = " $BackupTarget = New-WBBackupTarget -Volumepath \"$location\"";
             }
-            backupStatus.Text = "Running";
+            ////Backup State is now running the script
             PowerShell psinstace = PowerShell.Create();
             psinstace.AddScript("Import-Module -Name ServerManager");
             psinstace.AddScript("$backupPolicy = New-WBPolicy");
@@ -217,7 +232,7 @@ namespace WindowsService1
             {
                 Console.WriteLine(errorRecord.ToString() + "");
                 File.AppendAllText(backuplogfiletxt, errorRecord.ToString());
-                textBox.AppendText(Environment.NewLine + errorRecord.ToString());
+                //Report Errors
 
             }
             Console.WriteLine(completeVar);
@@ -227,18 +242,17 @@ namespace WindowsService1
 
 
                 File.Move(backuplogfiletxt, backuplogfile + "COMPLETE.txt");
-                backupStatus.Text = "COMPLETE";
+                /////Report Backup Status as Complete
             }
             else
             {
                 string backupfile = backuplogfile + "COMPLETE.txt";
 
                 File.Move(backuplogfiletxt, backuplogfile + "FAILED.txt");
-                backupStatus.Text = "FAILED";
+                //Report Backup Status as FAILED
             }
             return;
         }
-    }
 
         protected override void OnStop()
         {
