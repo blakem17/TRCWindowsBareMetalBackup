@@ -600,7 +600,7 @@ namespace WindowsFormsApplication2
         {
             backupStatus.Text = "STARTED";
             string backuplogdir = installDirectory + "backuplogs";
-            string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmm");
+            string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmmss");
             string backuplogfile = backuplogdir + "\\" + backupdaytime ;
             string backuplogfiletxt = backuplogdir + "\\" + backupdaytime + ".txt";
 
@@ -700,14 +700,18 @@ namespace WindowsFormsApplication2
             Console.WriteLine(completeVar);
             if (completeVar > 0)
             {
-                File.Move(backuplogfiletxt, backuplogfile + "COMPLETE.txt");
-                backupStatus.Text = "COMPLETE";
+                string backupfile = backuplogfile + "COMPLETE.txt";
+
+       
+                    File.Move(backuplogfiletxt, backuplogfile + "COMPLETE.txt");
+                    backupStatus.Text = "COMPLETE";
             }
             else
             {
-                File.Move(backuplogfiletxt, backuplogfile + "FAILED.txt");
-                backupStatus.Text = "FAILED";
-                backupStatus.Text = tabControl1.SelectedIndex.ToString();
+                string backupfile = backuplogfile + "COMPLETE.txt";
+               
+                    File.Move(backuplogfiletxt, backuplogfile + "FAILED.txt");
+                    backupStatus.Text = "FAILED";
             }
             return;
         }
@@ -729,6 +733,7 @@ namespace WindowsFormsApplication2
                     textBox.Text = "";
                     break;
                 case 1:
+                    fileListB.Items.Clear();
                     string backuplogdir = installDirectory + "backuplogs";
                     DirectoryInfo dinfo = new DirectoryInfo(backuplogdir);
                     FileInfo[] Files = dinfo.GetFiles("*.txt");
@@ -742,8 +747,10 @@ namespace WindowsFormsApplication2
         }
         private void fileListB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string curItem = fileListB.SelectedItem.ToString();
-            textBox.AppendText(Environment.NewLine + curItem);
+            string curFileName = fileListB.SelectedItem.ToString();
+            string backuplogdir = installDirectory + "backuplogs";
+            string curFileLocation = backuplogdir + "\\" + curFileName;
+            textBox.Text = File.ReadAllText(curFileLocation);
         }
 
     }
