@@ -3,6 +3,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.IO;
 using System.Management.Automation.Runspaces;
+using System.Diagnostics;
 using PowerShell = System.Management.Automation.PowerShell;
 
 
@@ -17,22 +18,34 @@ namespace WindowsService1
 
         protected override void OnStart(string[] args)
         {
+            System.Diagnostics.Debugger.Launch();
             System.IO.File.Create(AppDomain.CurrentDomain.BaseDirectory + "Onstart.txt");
+            Debug.WriteLine("Created onstart");
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             var scriptlocation = installDirectory + "UserConfig.txt";
-            var scriptText = File.ReadAllText(scriptlocation);
+            //if (File.Exists(scriptlocation))
+            //{
+            //    var scriptText = File.ReadAllText(scriptlocation);
+            //}
+            //else
+            //{
+            //    System.Environment.Exit(1);
+            //}
             if (checkwindowsFeatureInsatlled() == true)
             {
+                Debug.WriteLine("Windows featured is installed");
                 //Let GUI know that the backup is starting
                 createBackup();
             }
             else
             {
+                Debug.WriteLine("Windows featured is not installed");
                 if (checkwindowsFeatureInstallable() == true)
                 {
                     //let gui know that service is installable
                     if (InstalledWindowsBackupFeatures() == true)
                     {
+                        Debug.WriteLine("Installed Windows Feature");
                         //Let gui know that service was installed
                         //Let GUI know that the backup is starting
                         createBackup();
@@ -55,17 +68,20 @@ namespace WindowsService1
 
         Boolean checkwindowsFeatureInsatlled()
         {
+            Debug.WriteLine("Checking If windows feature is installed");
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             string tempfilelocationUnformatted = installDirectory + "temp.txt";
             PowerShell powerShell = PowerShell.Create();
             string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup" ;
             powerShell.AddScript(powershellScript);
             var results = powerShell.Invoke();
+            Debug.WriteLine("Running Powershell");
             var l = 0;
             foreach (var item in results)
-
             {
+                
                 string s = item.ToString();
+                Debug.WriteLine(s);
                 File.WriteAllText(tempfilelocationUnformatted, s);
                 if (s.Contains("Windows-Server-Backup") && s.Contains("X"))
                 {
@@ -78,6 +94,7 @@ namespace WindowsService1
             }
             else
             {
+                Debug.WriteLine("Windows Feature is not installed");
                 return false;
             }
 
@@ -85,16 +102,19 @@ namespace WindowsService1
 
         Boolean checkwindowsFeatureInstallable()
         {
+            Debug.WriteLine("Checking if windows feature is installable");
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             string tempfilelocationUnformatted = installDirectory + "temp.txt";
             PowerShell powerShell = PowerShell.Create();
             string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup";
             powerShell.AddScript(powershellScript);
+            Debug.WriteLine("Running Powershell");
             var results = powerShell.Invoke();
             var l = 0;
             foreach (var item in results)
 
             {
+                Debug.WriteLine("Writing data to text file");
                 string s = item.ToString();
                 File.WriteAllText(tempfilelocationUnformatted, s);
                 if (s.Contains("Windows-Server-Backup") && !s.Contains("X"))
@@ -108,16 +128,19 @@ namespace WindowsService1
             }
             else
             {
+                Debug.WriteLine("Windows feature not installable");
                 return false;
             }
         }
 
         Boolean InstalledWindowsBackupFeatures()
         {
+            Debug.WriteLine("Installing windows backup feature");
             InitialSessionState iss = InitialSessionState.CreateDefault();
             iss.ImportPSModule(new string[] { "ServerManager" });
             Runspace powerShellRunspace = RunspaceFactory.CreateRunspace(iss);
             powerShellRunspace.Open();
+            Debug.WriteLine("Running powershell");
             using (PowerShell powershell = PowerShell.Create())
             {
                 powershell.Runspace = powerShellRunspace;
@@ -131,6 +154,7 @@ namespace WindowsService1
 
         void createBackup()
         {
+            Debug.WriteLine("Creating and running backup");
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             string backuplogdir = installDirectory + "backuplogs";
             string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmmss");
@@ -146,66 +170,66 @@ namespace WindowsService1
             {
               //  textBox.AppendText(Environment.NewLine + "Backup Driectory Check PASSED");
             }
-          //  if (logTB.Text.Length > 0)
-           // {
-           //     if (!File.Exists(logTB.Text))
-           //     {
-           //         File.Create(logTB.Text);
+            //if (logTB.Text.Length > 0)
+            //{
+            //    if (!File.Exists(logTB.Text))
+            //    {
+            //        File.Create(logTB.Text);
             //    }
-          //  }
+            //}
 
             var BackupTarget = "";
             var username = "";
             var password = "";
-            string selectedItem = pathTYCB.SelectedItem.ToString();
-            if (selectedItem.Contains("NETWORKPATH"))
-            {
-                if (userTB.Text.Length > 0)
-                {
+            //string selectedItem = pathTYCB.SelectedItem.ToString();
+            //if (selectedItem.Contains("NETWORKPATH"))
+            //{
+            //    if (userTB.Text.Length > 0)
+            //    {
 
-                    if (passwordTB.Text.Length > 0)
-                    {
+            //        if (passwordTB.Text.Length > 0)
+            //        {
 
-                        BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\" -Credential $Cred";
-                    }
-                }
-                else
-                {
-                    BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
-                }
+            //          BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\" -Credential $Cred";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
+            //    }
 
-            }
-            if (selectedItem.Contains("DISK"))
-            {
-                BackupTarget = " $BackupTarget = New-WBBackupTarget -Disk \"$location\"";
-            }
-            if (selectedItem.Contains("VOLUME "))
-            {
-                BackupTarget = " $BackupTarget = New-WBBackupTarget -Volume \"$location\"";
-            }
-            if (selectedItem.Contains("VOLUMEPATH"))
-            {
-                BackupTarget = " $BackupTarget = New-WBBackupTarget -Volumepath \"$location\"";
-            }
+            //}
+            //if (selectedItem.Contains("DISK"))
+            //{
+            //    BackupTarget = " $BackupTarget = New-WBBackupTarget -Disk \"$location\"";
+            //}
+            //if (selectedItem.Contains("VOLUME "))
+            //{
+            //    BackupTarget = " $BackupTarget = New-WBBackupTarget -Volume \"$location\"";
+            //}
+            //if (selectedItem.Contains("VOLUMEPATH"))
+            //{
+            //    BackupTarget = " $BackupTarget = New-WBBackupTarget -Volumepath \"$location\"";
+            //}
             ////Backup State is now running the script
             PowerShell psinstace = PowerShell.Create();
             psinstace.AddScript("Import-Module -Name ServerManager");
             psinstace.AddScript("$backupPolicy = New-WBPolicy");
             psinstace.AddScript("Add-WBBareMetalRecovery -Policy $backupPolicy");
-            psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
-            if (userTB.Text.Length > 0)
-            {
-                username = userTB.Text;
-                if (passwordTB.Text.Length > 0)
-                {
-                    password = passwordTB.Text;
-                    psinstace.AddScript("$username = " + "\"" + userTB.Text + "\"");
-                    psinstace.AddScript("$password = " + "\"" + password + "\"");
-                    psinstace.AddScript("$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force");
-                    psinstace.AddScript("$cred = New-Object -TypeName System.Management.Automation.PSCredential -Argumentlist $username, $SecurePassword");
-                }
+          //  psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
+           // if (userTB.Text.Length > 0)
+          //  {
+           //     username = userTB.Text;
+            //    if (passwordTB.Text.Length > 0)
+             //   {
+            //        password = passwordTB.Text;
+             //       psinstace.AddScript("$username = " + "\"" + userTB.Text + "\"");
+             //       psinstace.AddScript("$password = " + "\"" + password + "\"");
+             //       psinstace.AddScript("$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force");
+             //       psinstace.AddScript("$cred = New-Object -TypeName System.Management.Automation.PSCredential -Argumentlist $username, $SecurePassword");
+             //   }
 
-            }
+          //  }
             psinstace.AddScript(BackupTarget);
             psinstace.AddScript("Add-WBBackupTarget $BackupTarget -Policy $backupPolicy");
             psinstace.AddScript("Start-WBBackup -Policy $backupPolicy");

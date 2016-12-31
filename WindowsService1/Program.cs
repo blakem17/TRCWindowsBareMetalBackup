@@ -14,6 +14,7 @@ namespace WindowsService1
         /// </summary>
         static void Main()
         {
+
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
@@ -21,7 +22,7 @@ namespace WindowsService1
             };
             ServiceBase.Run(ServicesToRun);
             System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite);
-
         }
+
     }
 }
