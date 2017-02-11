@@ -1,5 +1,6 @@
 # TRCWindowsBareMetalBackup
 This Latest Release has been tested on Server 2012 x64 only.
+Curent DevBranch is ServiceSeperation
 
 You can Now start a backup from the userinterface but it will lock up due to the lack of threading on the applcation, the backup is still running, you must be patient. 
 
