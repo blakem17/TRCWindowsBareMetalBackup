@@ -153,10 +153,11 @@ namespace WindowsService1
             {
                 foreach (PSProperty psPropertyinfo in psObject.Properties)
                 {
-                    string value = "";
+                    var value = "";
                     if (psPropertyinfo.Value != null)
                     {
                          value = psPropertyinfo.Value.ToString();
+                         Debug.Write(psPropertyinfo.Value);
                     }
                     if (value.Contains("backup"))
                     {

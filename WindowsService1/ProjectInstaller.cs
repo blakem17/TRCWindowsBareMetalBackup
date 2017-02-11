@@ -20,5 +20,10 @@ namespace WindowsService1
         {
 
         }
+
+        private void serviceInstaller1_AfterInstall_1(object sender, InstallEventArgs e)
+        {
+
+        }
     }
 }
