@@ -20,8 +20,16 @@ namespace WindowsService1
 
         protected override void OnStart(string[] args)
         {
+            string onstart = AppDomain.CurrentDomain.BaseDirectory + "Onstart.txt";
             System.Diagnostics.Debugger.Launch();
-            System.IO.File.Create(AppDomain.CurrentDomain.BaseDirectory + "Onstart.txt");
+            if (File.Exists(onstart))
+            {
+            }
+            else
+            {
+                File.Create(onstart);
+            }
+            
             Debug.WriteLine("Created onstart");
             string installDirectory = (AppDomain.CurrentDomain.BaseDirectory);
             var scriptlocation = installDirectory + "UserConfig.txt";
@@ -139,18 +147,40 @@ namespace WindowsService1
             string powershellScript = "import-module servermanager | Get-windowsFeature -Name Windows-Server-Backup";
             powerShell.AddScript(powershellScript);
             Debug.WriteLine("Running Powershell");
-            var results = powerShell.Invoke();
+            Collection<PSObject> results = powerShell.Invoke();
             var l = 0;
-            foreach (var item in results)
-
+            foreach (PSObject psObject in results)
             {
-                Debug.WriteLine("Writing data to text file");
-                string s = item.ToString();
-                File.WriteAllText(tempfilelocationUnformatted, s);
-                if (s.Contains("Windows-Server-Backup") && !s.Contains("X"))
+                foreach (PSProperty psPropertyinfo in psObject.Properties)
                 {
-                    l = l + 1;
+                    string value = "";
+                    if (psPropertyinfo.Value != null)
+                    {
+                         value = psPropertyinfo.Value.ToString();
+                    }
+                    if (value.Contains("backup"))
+                    {
+                        Debug.Write(psPropertyinfo.MemberType);
+                    //    Debug.Write(value + "123456789");
+                    //    using (StreamWriter sw = File.AppendText(tempfilelocationUnformatted))
+                    //    {
+                    //        sw.WriteLine(psPropertyinfo.Name);
+                    //        sw.WriteLine(psPropertyinfo.Value);
+                    //        sw.WriteLine(psPropertyinfo.MemberType);
+                    //    }
+                    }
+
+
                 }
+
+                Debug.WriteLine("Writing data to text file");
+                
+
+               
+               // if (s.Contains("Windows-Server-Backup") && !s.Contains("X"))
+               // {
+               //     l = l + 1;
+              //  }
             }
             if (l >= 1)
             {
