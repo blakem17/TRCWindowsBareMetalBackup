@@ -52,19 +52,17 @@ namespace ConsoleApplication1
         }
         public static void runbackup()
         {
+            Console.WriteLine("Creating and running backup");
             string backupconfigstring = backupConfigStr();
-            
-            Debug.WriteLine("Creating and running backup");
             string backupdaytime = DateTime.Now.ToString("MMddyyyyTHHmmss");
             string backuplogfile = backuplogdir + "\\" + backupdaytime;
             string backuplogfiletxt = backuplogdir + "\\" + backupdaytime + ".txt";
+
+            //Checkig if Backup Log Directory Exits and if not creating it
             if (!Directory.Exists(backuplogdir))
             {
                 Directory.CreateDirectory(backuplogdir);
-                Debug.WriteLine("Created BackupLog Directory");
-            }
-            else
-            {
+                Console.WriteLine("Created BackupLog Directory");
             }
             if (File.Exists(backuplogfiletxt))
             {
@@ -73,13 +71,12 @@ namespace ConsoleApplication1
                 string randomintString = random.Next(0, 20).ToString();
                 backuplogfiletxt = backuplogfiletxt + randomintString;
             }
-            var BackupTarget = "";
             ////Backup State is now running the script
             PowerShell psinstace = PowerShell.Create();
-            psinstace.AddScript("Import-Module -Name ServerManager");
-            psinstace.AddScript("$backupPolicy = New-WBPolicy");
-            psinstace.AddScript("Add-WBBareMetalRecovery -Policy $backupPolicy");
-            //  psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
+            psinstace.AddScript("");
+            psinstace.AddScript("");
+            psinstace.AddScript("");
+           // psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
             // if (userTB.Text.Length > 0)
             //  {
             //     username = userTB.Text;
@@ -93,9 +90,8 @@ namespace ConsoleApplication1
             //   }
 
             //  }
-            psinstace.AddScript(BackupTarget);
-            psinstace.AddScript("Add-WBBackupTarget $BackupTarget -Policy $backupPolicy");
-            psinstace.AddScript("Start-WBBackup -Policy $backupPolicy");
+            psinstace.AddScript("");
+            psinstace.AddScript("");
             var results = psinstace.Invoke();
             var completeVar = 0;
             foreach (var item in results)
@@ -152,6 +148,11 @@ namespace ConsoleApplication1
         }
         public static string backupUsernameStr()
         {
+            Debug.Write(backupConfigStringArr());
+            //foreach (string sr in backupConfigStringArr())
+            //{
+            //    if
+            //}
             string backupUsername = "";
             return backupUsername;
         }
@@ -206,6 +207,19 @@ namespace ConsoleApplication1
             }
 
         }
+        public static string backupScriptString()
+        {
+            
+            string servermanImport = "Import-Module -Name ServerManager";
+            string backupPolicy = "$backupPolicy = New-WBPolicy";
+            string backupPolicyAdd = "Add-WBBareMetalRecovery -Policy $backupPolicy";
+            string backupTarget = backupTargetStr();
+            string backupPolicyAddTarget = "Add-WBBackupTarget $BackupTarget -Policy $backupPolicy";
+            string startBackup = "Start-WBBackup -Policy $backupPolicy";
+
+            string backupScript = "";
+            return backupScript;
+        }
         public static Boolean backupIsInstalled()
         {
             var ps = PowerShell.Create();
@@ -250,8 +264,17 @@ namespace ConsoleApplication1
         }
         public static string backupConfigStr()
         {
-            string backupConfig = File.ReadAllText(backupconfigFile);
-            return backupConfig;
+            if (File.Exists(backupconfigFile))
+            {
+                string backupConfig = File.ReadAllText(backupconfigFile);
+                return backupConfig;
+            }
+            else
+            {
+                Console.WriteLine("ERROR No backup configuration please create one through the GUI");
+                return null;
+            }
+
         }
         public static string[] backupConfigStringArr()
         {
