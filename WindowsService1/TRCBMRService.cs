@@ -149,40 +149,6 @@ namespace WindowsService1
             Debug.WriteLine("Running Powershell");
             Collection<PSObject> results = powerShell.Invoke();
             var l = 0;
-            foreach (PSObject psObject in results)
-            {
-                foreach (PSProperty psPropertyinfo in psObject.Properties)
-                {
-                    var value = "";
-                    if (psPropertyinfo.Value != null)
-                    {
-                         value = psPropertyinfo.Value.ToString();
-                         Debug.Write(psPropertyinfo.Value);
-                    }
-                    if (value.Contains("backup"))
-                    {
-                        Debug.Write(psPropertyinfo.MemberType);
-                    //    Debug.Write(value + "123456789");
-                    //    using (StreamWriter sw = File.AppendText(tempfilelocationUnformatted))
-                    //    {
-                    //        sw.WriteLine(psPropertyinfo.Name);
-                    //        sw.WriteLine(psPropertyinfo.Value);
-                    //        sw.WriteLine(psPropertyinfo.MemberType);
-                    //    }
-                    }
-
-
-                }
-
-                Debug.WriteLine("Writing data to text file");
-                
-
-               
-               // if (s.Contains("Windows-Server-Backup") && !s.Contains("X"))
-               // {
-               //     l = l + 1;
-              //  }
-            }
             if (l >= 1)
             {
                 return true;

@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRCBMRservice", "WindowsService1\TRCBMRservice.csproj", "{5363A247-2CEF-42D2-8CB6-041AE744FE8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{5363A247-2CEF-42D2-8CB6-041AE744FE8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5363A247-2CEF-42D2-8CB6-041AE744FE8C}.Release|x64.ActiveCfg = Release|Any CPU
 		{5363A247-2CEF-42D2-8CB6-041AE744FE8C}.Release|x64.Build.0 = Release|Any CPU
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Debug|x64.ActiveCfg = Debug|x64
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Debug|x64.Build.0 = Debug|x64
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Release|x64.ActiveCfg = Release|Any CPU
+		{6FAF6AEA-E48F-4973-A3F4-8870917A6CDA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
