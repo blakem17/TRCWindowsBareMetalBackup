@@ -76,22 +76,6 @@ namespace ConsoleApplication1
             psinstace.AddScript("");
             psinstace.AddScript("");
             psinstace.AddScript("");
-           // psinstace.AddScript(" $location = " + "\"" + locationTB.Text + "\"");
-            // if (userTB.Text.Length > 0)
-            //  {
-            //     username = userTB.Text;
-            //    if (passwordTB.Text.Length > 0)
-            //   {
-            //        password = passwordTB.Text;
-            //       psinstace.AddScript("$username = " + "\"" + userTB.Text + "\"");
-            //       psinstace.AddScript("$password = " + "\"" + password + "\"");
-            //       psinstace.AddScript("$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force");
-            //       psinstace.AddScript("$cred = New-Object -TypeName System.Management.Automation.PSCredential -Argumentlist $username, $SecurePassword");
-            //   }
-
-            //  }
-            psinstace.AddScript("");
-            psinstace.AddScript("");
             var results = psinstace.Invoke();
             var completeVar = 0;
             foreach (var item in results)
@@ -139,27 +123,100 @@ namespace ConsoleApplication1
         public static string backupLocationStr()
         {
             string backupLocation = "";
+            int i = 0;
+            foreach (string st in backupConfigStringArr())
+            {
+                switch (i)
+                {
+                    case 0:
+                        backupLocation = st;
+                        break;
+                    default:
+                        Console.WriteLine("");
+                        break;
+                }
+
+            }
+
             return backupLocation;
         }
         public static string backupTypeStr()
         {
             string backupType = "";
+            int i = 0;
+            foreach (string st in backupConfigStringArr())
+            {
+                switch (i)
+                {
+                    case 0:
+                        i = i + 1;
+                        break;
+                    case 1:
+                        backupType = st;
+                        i = i + 1;
+                        break;
+                    default:
+                        Console.WriteLine("Error Default switch");
+                        break;
+                }
+
+            }
+
             return backupType;
         }
         public static string backupUsernameStr()
         {
-            Debug.Write(backupConfigStringArr());
-            //foreach (string sr in backupConfigStringArr())
-            //{
-            //    if
-            //}
             string backupUsername = "";
+            int i = 0;
+            foreach (string st in backupConfigStringArr())
+            {
+                switch (i)
+                {
+                    case 0:
+                        i = i + 1;
+                        break;
+                    case 1:
+                        i = i + 1;
+                        break;
+                    case 2:
+                        backupUsername = st;
+                        i = i + 1;
+                        break;
+                    default:
+                        Console.WriteLine("Error Default switch");
+                        break;
+                }
+
+            }
             return backupUsername;
         }
         public static string backupPasswordStr()
         {
-            string backuppassword = "";
-            return backuppassword;
+            string backupPassword = "";
+            int i = 0;
+            foreach (string st in backupConfigStringArr())
+            {
+                switch (i)
+                {
+                    case 0:
+                        i = i + 1;
+                        break;
+                    case 1:
+                        i = i + 1;
+                        break;
+                    case 2:
+                        i = i + 1;
+                        break;
+                    case 3:
+                        backupPassword = st;
+                        break;
+                    default:
+                        Console.WriteLine("Error Default switch");
+                        break;
+                }
+
+            }
+            return backupPassword;
         }
         public static string backupTargetStr()
         {
@@ -209,12 +266,21 @@ namespace ConsoleApplication1
         }
         public static string backupScriptString()
         {
+            string location = backupLocationStr();
+            string username = backupUsernameStr();
+            string password = backupPasswordStr();
             
-            string servermanImport = "Import-Module -Name ServerManager";
+            string serverManImport = "Import-Module -Name ServerManager";
             string backupPolicy = "$backupPolicy = New-WBPolicy";
             string backupPolicyAdd = "Add-WBBareMetalRecovery -Policy $backupPolicy";
             string backupTarget = backupTargetStr();
             string backupPolicyAddTarget = "Add-WBBackupTarget $BackupTarget -Policy $backupPolicy";
+            string backupTargetiAdd = "$location = " + "\"" + backupTarget + "\"";
+            string backupLocation = " $location = " + "\"" + location + "\"";
+            string backupUserName = "$username = " + "\"" + username + "\"";
+            string backupPassword = "$password = " + "\"" + password + "\"";
+            string passToSecureString = "$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force";
+            string setcredentials = "$cred = New-Object -TypeName System.Management.Automation.PSCredential -Argumentlist $username, $SecurePassword";
             string startBackup = "Start-WBBackup -Policy $backupPolicy";
 
             string backupScript = "";
@@ -282,5 +348,6 @@ namespace ConsoleApplication1
             string[] backupStringArray = backupConfigString.Split(',');
             return backupStringArray;
         }
+
     }   
 }
