@@ -74,38 +74,6 @@ namespace ConsoleApplication1
                 backuplogfiletxt = backuplogfiletxt + randomintString;
             }
             var BackupTarget = "";
-            var username = "";
-            var password = "";
-            //string selectedItem = pathTYCB.SelectedItem.ToString();
-            //if (selectedItem.Contains("NETWORKPATH"))
-            //{
-            //    if (userTB.Text.Length > 0)
-            //    {
-
-            //        if (passwordTB.Text.Length > 0)
-            //        {
-
-            //          BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\" -Credential $Cred";
-            //        }
-            //    }
-            //    else
-            //    {
-            //        BackupTarget = " $BackupTarget = New-WBBackupTarget -NetworkPath \"$location\"";
-            //    }
-
-            //}
-            //if (selectedItem.Contains("DISK"))
-            //{
-            //    BackupTarget = " $BackupTarget = New-WBBackupTarget -Disk \"$location\"";
-            //}
-            //if (selectedItem.Contains("VOLUME "))
-            //{
-            //    BackupTarget = " $BackupTarget = New-WBBackupTarget -Volume \"$location\"";
-            //}
-            //if (selectedItem.Contains("VOLUMEPATH"))
-            //{
-            //    BackupTarget = " $BackupTarget = New-WBBackupTarget -Volumepath \"$location\"";
-            //}
             ////Backup State is now running the script
             PowerShell psinstace = PowerShell.Create();
             psinstace.AddScript("Import-Module -Name ServerManager");
